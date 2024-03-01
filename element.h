@@ -17,7 +17,7 @@ class Element
 {
 private:
     T data;
-    int key; // Putting key as int for now
+    int key;
 
 public:
     Element();                            // Can just initialize element without values
