@@ -9,6 +9,10 @@
 #include <string>
 using namespace std;
 
+//==================================
+// Hash Table Class
+//==================================
+
 #ifndef HASH_TABLE_H
 #define HASH_TABLE_H
 
@@ -29,6 +33,11 @@ public:
 };
 
 #endif
+
+
+//==================================
+// Element Class
+//==================================
 
 #ifndef ELEMENT_H
 #define ELEMENT_H

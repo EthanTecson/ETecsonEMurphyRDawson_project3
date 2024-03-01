@@ -7,6 +7,10 @@
 
 #include "hash_table.h"
 
+//==================================
+// Element Class
+//==================================
+
 /**
  * @brief Constructor Class
  *
@@ -100,3 +104,7 @@ T Element<T>::get_data()
 {
     return data;
 }
+
+//==================================
+// Hash Table Class
+//==================================
