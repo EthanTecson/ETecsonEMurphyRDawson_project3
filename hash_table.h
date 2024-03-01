@@ -9,27 +9,44 @@
 #include <string>
 using namespace std;
 
-
 #ifndef HASH_TABLE_H
 #define HASH_TABLE_H
-
 
 template <class T>
 class HashTable
 {
-    private:
-
+private:
     // Still need to be done. May have to coorelate with linked list and how we decide to implement our hash function.
-        
-    public:
-        HashTable(int slots); // After looking at test cases, I think HashTable always needs to be initiated with a number of slots
-        HashTable(const HashTable<T> &myHashTable); // Copy Constructor
-        ~HashTable(void); // Deconstructor
-        void insert(const T d, const T k); // Inserts data d with key k by inserting at head of double linked list. Reading says that if a slot is not empty, it contains a pointer that points to a doubly linked list.
-        void remove(const T k); // Removes element of value k (we are allowed to assume that all keys are distinct)
-        bool member(const T d, const T k) const; // check to see if an element with data d and key k is apart of the HashTable
-        string to_string() const;
+
+public:
+    HashTable(int slots);                       // After looking at test cases, I think HashTable always needs to be initiated with a number of slots
+    HashTable(const HashTable<T> &myHashTable); // Copy Constructor
+    ~HashTable(void);                           // Deconstructor
+    void insert(const T d, const T k);          // Inserts data d with key k by inserting at head of double linked list. Reading says that if a slot is not empty, it contains a pointer that points to a doubly linked list.
+    void remove(const T k);                     // Removes element of value k (we are allowed to assume that all keys are distinct)
+    bool member(const T d, const T k) const;    // check to see if an element with data d and key k is apart of the HashTable
+    string to_string() const;
 };
 
+#endif
+
+#ifndef ELEMENT_H
+#define ELEMENT_H
+
+template <class T>
+class Element
+{
+private:
+    T data;
+    T key;
+
+public:
+    Element();                            // Can just initialize element without values
+    Element(const Element<T> &myElement); // Copy constructor
+    Element(const T &d, const T &k);      // Initialize element with data and key
+    ~Element(void);                       // Deconstrcutor
+    int get_key();                        // Instructions say that this method should return the NUMERIC key but I was not sure if keys were able to non-numeric like a string.
+    T get_data();                         // Returns data of element
+};
 
 #endif
