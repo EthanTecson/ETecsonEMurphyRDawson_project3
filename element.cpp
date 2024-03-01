@@ -97,7 +97,7 @@ int Element<T>::get_key()
  * @returns element object's data value
  */
 template <class T>
-int Element<T>::get_key()
+T Element<T>::get_data()
 {
     return data;
 }
