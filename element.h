@@ -15,16 +15,17 @@ using namespace std;
 template <class T>
 class Element
 {
-    private:
-        T data;
-        int key; // Putting key as int for now
+private:
+    T data;
+    int key; // Putting key as int for now
 
-    public:
-        Element(); // Can just initialize element without values
-        Element(T d, T k); // Initialize element with data and key
-        ~Element(void); // Deconstrcutor
-        int get_key(); // Instructions say that this method should return the NUMERIC key but I was not sure if keys were able to non-numeric like a string.
-        T get_data(); // Returns data of element
+public:
+    Element();                            // Can just initialize element without values
+    Element(const Element<T> &myElement); // Copy constructor
+    Element(T d, T k);                    // Initialize element with data and key
+    ~Element(void);                       // Deconstrcutor
+    int get_key();                        // Instructions say that this method should return the NUMERIC key but I was not sure if keys were able to non-numeric like a string.
+    T get_data();                         // Returns data of element
 };
 
 #endif
