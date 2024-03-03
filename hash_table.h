@@ -20,10 +20,10 @@ template <class T>
 class HashTable
 {
 private:
-    // Still need to be done. May have to coorelate with linked list and how we decide to implement our hash function.
+    int slots;
 
 public:
-    HashTable(int slots);                       // After looking at test cases, I think HashTable always needs to be initiated with a number of slots
+    HashTable(int numSlots);                       // After looking at test cases, I think HashTable always needs to be initiated with a number of slots
     HashTable(const HashTable<T> &myHashTable); // Copy Constructor
     ~HashTable(void);                           // Deconstructor
     void insert(const T d, const T k);          // Inserts data d with key k by inserting at head of double linked list. Reading says that if a slot is not empty, it contains a pointer that points to a doubly linked list.
