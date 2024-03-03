@@ -35,15 +35,17 @@ using namespace std;
 class Board
 {
 public:
-            Board             ( void );
-            Board             ( const Board &b );
-            ~Board            ( void );
-   Board    operator=         ( const Board &board );
-   int      getHashValue      ( int numHashSlots ) const;
-   bool     operator==        ( const Board &b ) const;
+   Board(void);                              // default constructor
+   Board(const Board &b);                    // copy constructor
+   ~Board(void);                             // destructor
+   Board operator=(const Board &board);      // assignment operator
+   int getHashValue(int numHashSlots) const; // hash function
+   bool operator==(const Board &b) const;    // comparison operator
 
-   friend   ostream & operator<< ( ostream &os, const Board &b );
-   friend   istream & operator>> ( istream &is, Board &b );
+   friend ostream &operator<<(ostream &os, const Board &b); // print operator
+
+   friend istream &operator>>(istream &is, Board &b); // read operators
+   // todo: add any other methods you think may be helpful
 
 private:
    unsigned char board[BOARD_SIZE][BOARD_SIZE];
