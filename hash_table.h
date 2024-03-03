@@ -46,8 +46,15 @@ template <class T>
 class Element
 {
 private:
-    T data;
-    T key;
+
+    struct Node {
+        T data; 
+        T key;
+        Node *next;
+        Node *previous;
+    };
+
+    Node *head;
 
 public:
     Element();                            // Can just initialize element without values
