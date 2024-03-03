@@ -135,12 +135,8 @@ istream &operator>>(istream &is, Board &b)
 int Board::getHashValue(int numHashSlots) const
 {
    // write your first hash function here.
-   hash = 0;                                               // initialize hash to 0
-   for (int i = 0; i < BOARD_SIZE; i++)                    // iterate through the rows of the board
-      for (int j = 0; j < BOARD_SIZE; j++)                 // iterate through the columns of the board
-         hash = (hash * 256 + board[i][j]) % numHashSlots; // update the hash value
 
-   return 0; // return the hash value
+   return 0;
 }
 #endif
 //============================================================================
