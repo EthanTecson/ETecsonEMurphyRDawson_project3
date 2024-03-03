@@ -155,13 +155,14 @@ HashTable<T>::~HashTable(void)
 template <class T>
 void HashTable<T>::insert(const T d, const T k)
 {
+    Element<T> e(d,k);
     if(!(member(d, k))) // should not insert duplicates
     {
         int position = hash(k); // placeholder for the hash function
 
         // Check if slot is empty (emptySlot function?)
-            // If yes, head = d
-            // Else, d->next = head->item, d->prev = NULL, head = d
+            // If yes, head = e
+            // Else, e->next = head->item, e->prev = NULL, head = e
     }
 }
 
@@ -172,8 +173,8 @@ void HashTable<T>::remove(const T k)
     if((member(d, k))) // should only remove somethiing in the table
     {
         int position = hash(k); //placeholder for the hash function
-
         
+
     }
 
 }              
