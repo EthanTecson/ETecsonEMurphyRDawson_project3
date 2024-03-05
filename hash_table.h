@@ -21,7 +21,12 @@ class HashTable
 {
 private:
     int slots;
+    T** array;
 
+    // See if this will work as a pointer
+    struct Node {
+        Node *next;
+    };
 
 public:
     HashTable(int numSlots);                       // After looking at test cases, I think HashTable always needs to be initiated with a number of slots
@@ -31,6 +36,7 @@ public:
     void remove(const T k);                     // Removes element of value k (we are allowed to assume that all keys are distinct)
     bool member(const T d, const T k) const;    // check to see if an element with data d and key k is apart of the HashTable
     string to_string() const;
+    bool operator==(const HashTable<T>& other) const;
 };
 
 #endif

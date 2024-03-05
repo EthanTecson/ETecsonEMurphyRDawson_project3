@@ -62,6 +62,21 @@ void test_get_data()
     }
 }
 
+// void test_copy_constructor(){
+//     try
+//     {
+//         HashTable<int> table(5); 
+//         HashTable<int> copyTable(table);
+//         if (!(table == copyTable)){
+//             cout << "Incorrect result from copy constructor";
+//         }
+//     }
+//     catch (exception &e)
+//     {
+//         cerr << "Error with copy constructor : " << e.what() << endl; 
+//     }
+// }
+
 // void test_insert()
 // {
 //     try
@@ -179,11 +194,13 @@ void test_get_data()
 //         cerr << "Error determining membership from table : " << e.what() << endl;
 //     }
 // }
+
 int main()
 {
 
     test_get_key();
-    //test_get_data();
+    test_get_data();
+    // test_copy_constructor();
     // test_insert();
     // test_remove();
     // test_member();
