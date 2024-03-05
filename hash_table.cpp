@@ -161,7 +161,7 @@ void HashTable<T>::insert(const T d, const T k)
     Element<T> e(d, k);
     if (!(member(d, k))) // should not insert duplicates
     {
-        int position = hash(k); // placeholder for the hash function
+        int position = k % slots;
 
         // Check if slot is empty (emptySlot function?)
         // If yes, head = e
