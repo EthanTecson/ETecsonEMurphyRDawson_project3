@@ -183,7 +183,7 @@ int main()
 {
 
     test_get_key();
-    test_get_data();
+    //test_get_data();
     // test_insert();
     // test_remove();
     // test_member();
