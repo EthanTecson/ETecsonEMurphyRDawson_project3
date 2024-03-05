@@ -6,6 +6,7 @@
 //=================================
 
 #include "hash_table.h"
+#include <sstream>
 
 //==================================
 // Element Class
