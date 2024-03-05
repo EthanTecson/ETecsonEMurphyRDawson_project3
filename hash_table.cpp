@@ -38,16 +38,18 @@ Element<T>::Element()
 template <class T>
 Element<T>::Element(const Element<T> &myElement)
 {
-    if (myElement.head == NULL){
+    if (myElement.head == NULL)
+    {
         head = NULL;
     }
-    else {
-    head = new Node;
+    else
+    {
+        head = new Node;
 
-    head->next = NULL;
-    head->previous = NULL;
-    head->data = myElement.head->data;
-    head->key = myElement.head->key;
+        head->next = NULL;
+        head->previous = NULL;
+        head->data = myElement.head->data;
+        head->key = myElement.head->key;
     }
 }
 /**
@@ -103,7 +105,8 @@ Element<T>::~Element()
 template <class T>
 int Element<T>::get_key()
 {
-    if (head){
+    if (head)
+    {
         return head->key;
     }
     return -1;
@@ -121,7 +124,8 @@ int Element<T>::get_key()
 template <class T>
 T Element<T>::get_data()
 {
-    if (head){
+    if (head)
+    {
         return head->data;
     }
     return -0;
@@ -130,65 +134,69 @@ T Element<T>::get_data()
 //==================================
 // Hash Table Class
 //==================================
-//Default Constructor
+// Default Constructor
 template <class T>
 HashTable<T>::HashTable(int numSlots)
 {
     slots = numSlots;
-}            
+}
 
-//Copy Constructor
+// Copy Constructor
 template <class T>
 HashTable<T>::HashTable(const HashTable<T> &myHashTable)
 {
     slots = myHashTable.slots;
 }
 
-//Deconstructor
+// Deconstructor
 template <class T>
 HashTable<T>::~HashTable(void)
 {
-
 }
 
-//Insert
+// Insert
 template <class T>
 void HashTable<T>::insert(const T d, const T k)
 {
-    Element<T> e(d,k);
-    if(!(member(d, k))) // should not insert duplicates
+    Element<T> e(d, k);
+    if (!(member(d, k))) // should not insert duplicates
     {
         int position = hash(k); // placeholder for the hash function
 
         // Check if slot is empty (emptySlot function?)
-            // If yes, head = e
-            // Else, e->next = head->item, e->prev = NULL, head = e
+        // If yes, head = e
+        // Else, e->next = head->item, e->prev = NULL, head = e
     }
 }
 
-//Remove
+// Remove
 template <class T>
 void HashTable<T>::remove(const T k)
 {
-    if((member(d, k))) // should only remove somethiing in the table
+    if ((member(d, k))) // should only remove somethiing in the table
     {
-        int position = hash(k); //placeholder for the hash function
-        
-
+        int position = hash(k); // placeholder for the hash function
     }
+}
 
-}              
-
-//Member 
+// Member
 template <class T>
 bool HashTable<T>::member(const T d, const T k) const
 {
-
 }
 
-//To-String
+// To-String
 template <class T>
 string HashTable<T>::to_string() const
 {
-
+    std::ostringstream oss; // create an output string stream
+    if (slots == 0)         // if the number of slots is 0
+    {
+        oss << "The Hash Table is empty"; // print that the hash table is empty
+    }
+    else
+    {
+        oss << " Hash Table with " << slots << "slots"; // print the number of slots
+    }
+    return oss.str(); // return the string
 }
