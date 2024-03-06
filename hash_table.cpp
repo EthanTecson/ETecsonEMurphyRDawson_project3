@@ -182,34 +182,40 @@ HashTable<T>::~HashTable(void)
 /**
  * @brief insert Class
  *
- * 
  *
- * @note Pre-Condition: 
- * @note Post-Condition: 
+ *
+ * @note Pre-Condition:
+ * @note Post-Condition:
  * @returns none
  */
 template <class T>
 void HashTable<T>::insert(const T d, const T k)
 {
-    Element<T> e(d, k);
-    if (!(member(d, k))) // should not insert duplicates
+    if (!(member(d, k))) // should only insert something not in the table
     {
-        int position = k % slots;
+        int position = hash(k);
+        % slots; // placeholder for the hash function
 
-        // Check if slot is empty (emptySlot function?)
-        // If yes, head = e
-        // Else, e->next = head->item, e->prev = NULL, head = e
+        Node<T> *insertedNode = new Node<T>(d, k); // create a new node
+        insertedNode->next = slots[position];      // set the next value of insertedNode to the current value of slots[position]
+        insertedNode->previous = nullptr           // set the previous value of  insertedNode to null
+
+            if (slots[position] != nullptr)
+        {                                             // if the current value of slots[position] is not null
+            slots[position]->previous = insertedNode; // set the previous value of slots[position] to insertedNode
+        }
+        slots[position] = insertedNode; // set the current value of slots[position] to insertedNode
     }
 }
 
 /**
  * @brief remove Class
  *
- * 
  *
- * @note Pre-Condition: 
- * @note Post-Condition: 
- * @returns 
+ *
+ * @note Pre-Condition:
+ * @note Post-Condition:
+ * @returns
  */
 template <class T>
 void HashTable<T>::remove(const T k)
@@ -222,11 +228,11 @@ void HashTable<T>::remove(const T k)
 
 /**
  * @brief member Class
- * 
- * 
- * 
- * @note Pre-Condition: 
- * @note Post-Condition: 
+ *
+ *
+ *
+ * @note Pre-Condition:
+ * @note Post-Condition:
  * @returns none
  */
 template <class T>
@@ -236,12 +242,12 @@ bool HashTable<T>::member(const T d, const T k) const
 
 /**
  * @brief to_string Class
- * 
- * 
- * 
- * @note Pre-Condition: 
- * @note Post-Condition: 
- * @returns 
+ *
+ *
+ *
+ * @note Pre-Condition:
+ * @note Post-Condition:
+ * @returns
  */
 template <class T>
 string HashTable<T>::to_string() const
