@@ -62,53 +62,64 @@ void test_get_data()
     }
 }
 
-void test_to_string() {
-    HashTable<int> ht(5);
-    ht.insert(10, 6);
-    ht.insert(11, 7);
-    ht.insert(12, 8);
-    ht.insert(13, 9);
-    ht.insert(14, 10);
+void test_to_string() 
+{
+    HashTable<int> ht(10);
 
-    cout << ht.to_string() << endl;
+    ht.insert(10, 1);
+    ht.insert(11, 2);
+    ht.insert(12, 3);
+    ht.insert(13, 4);
+    ht.insert(14, 5);
+
+    cout << ht.to_string();
+
+    HashTable<int> empty_ht(0);
+    empty_ht.insert(10, 6);
+    // if (empty_ht.to_string() != "")
+    // {
+    //     cout << "Incorrect result of inserting into table. Expected and empty string But got\n\n"
+    //     << empty_ht.to_string() << endl;
+    // }
+
 }
 
-// void test_insert()
-// {
-//     try
-//     {
-//         HashTable<int> empty_ht(0);
-//         empty_ht.insert(10, 6);
-//         if (empty_ht.to_string() != "")
-//         {
-//             cout << "Incorrect result of inserting into table. Expected and empty string But got\n\n"
-//                  << empty_ht.to_string() << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cout << "Error caused by trying to insert into empty table : " << e.what() << endl;
-//     }
-//     try
-//     {
-//         HashTable<int> ht(5);
-//         ht.insert(10, 6);
-//         if (ht.to_string() != "0: \n1: (10,6) \n2: \n3: \n4: \n")
-//         {
-//             cout << "Incorrect result of inserting into table. Expected\n\n0: \n1: (10,6) \n2: \n3: \n4: \n\nBut got\n\n"
-//                  << ht.to_string() << endl;
-//         }
-//         ht.insert(1, 21);
-//         if (ht.to_string() != "0: \n1: (1,21) (10,6) \n2: \n3: \n4: \n")
-//         {
-//             cout << "Incorrect result of inserting into table" << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error inserting into non-empty table : " << e.what() << endl;
-//     }
-// }
+void test_insert()
+{
+    try
+    {
+        HashTable<int> empty_ht(0);
+        empty_ht.insert(10, 6);
+        if (empty_ht.to_string() != "")
+        {
+            cout << "Incorrect result of inserting into table. Expected and empty string But got\n\n"
+                 << empty_ht.to_string() << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cout << "Error caused by trying to insert into empty table : " << e.what() << endl;
+    }
+    try
+    {
+        HashTable<int> ht(5);
+        ht.insert(10, 6);
+        if (ht.to_string() != "0: \n1: (10,6) \n2: \n3: \n4: \n")
+        {
+            cout << "Incorrect result of inserting into table. Expected\n\n0: \n1: (10,6) \n2: \n3: \n4: \n\nBut got\n\n"
+                 << ht.to_string() << endl;
+        }
+        ht.insert(1, 21);
+        if (ht.to_string() != "0: \n1: (1,21) (10,6) \n2: \n3: \n4: \n")
+        {
+            cout << "Incorrect result of inserting into table" << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error inserting into non-empty table : " << e.what() << endl;
+    }
+}
 
 // void test_remove()
 // {

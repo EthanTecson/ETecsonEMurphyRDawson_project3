@@ -149,16 +149,8 @@ T Element<T>::get_data()
 template <class T>
 HashTable<T>::HashTable(int numSlots)
 {
-    // slots = numSlots; 
-    // array = new list<T>*[slots];
-    // for (int i = 0; i < slots; ++i){
-    //     array[i] = new list<T>();
-    // }
     slots = numSlots; 
     table = new list<Element<T>>[slots]; 
-    // for (int i = 0; i < slots; ++i){
-    //     array[i] = list<T>();
-    // }
 }
 
 // /**
@@ -170,28 +162,11 @@ HashTable<T>::HashTable(int numSlots)
 //  * @note Post-Condition: Creates a HashTable object
 //  * @returns none
 //  */
-// template <class T>
-// HashTable<T>::HashTable(const HashTable<T> &myHashTable) {
-//     slots = myHashTable.slots;
-//     array = new list<T>[slots];
-
-//     // Loop through each slot in the original hash table
-//     for (int i = 0; i < slots; ++i) {
-//         // Check if the original slot is not empty
-//         if (!myHashTable.array[i].empty()) {
-//             // Create iterators for the beginning and end of the original slot's linked list
-//             auto it = myHashTable.array[i].begin();
-//             auto end = myHashTable.array[i].end();
-            
-//             // Loop through the elements in the original slot's linked list using iterators
-//             while (it != end) {
-//                 // Add a copy of the element to the new slot's linked list
-//                 array[i].push_back(*it);
-//                 ++it; // Move to the next element
-//             }
-//         }
-//     }
-// }
+template <class T>
+HashTable<T>::HashTable(const HashTable<T> &myHashTable)
+{
+    // Write code here
+}
 
 
 /**
@@ -220,7 +195,7 @@ HashTable<T>::~HashTable(void) {
 template <class T>
 void HashTable<T>::insert(const T d, const T k)
 {
-
+    // Check if hash table is initiated to 0 first
     // Check if inserted item is a member (member method not made yet)
     Element<T> e(d,k);
     int position = k % slots;
@@ -275,13 +250,14 @@ string HashTable<T>::to_string() const
     for (int i = 0; i < slots; ++i){
         auto it = table[i].begin();
         auto end = table[i].end();
-
+        stream << i << ":"; 
         while (it != end)
         {
-            stream << it->get_data();
+            stream << "(" << it->get_data() << "," << it->get_key() << ")";
             stream << " ";
             ++it;
         }
+        stream << "\n"; 
     }
     return stream.str();
 }
