@@ -24,7 +24,7 @@
 template <class T>
 Element<T>::Element()
 {
-    head = NULL;
+    head = NULL; // empty element should be null
 }
 
 /**
@@ -41,14 +41,16 @@ Element<T>::Element(const Element<T> &myElement)
 {
     if (myElement.head == NULL)
     {
-        head = NULL;
+        head = NULL; // copying an empty element should result in an empty element
     }
     else
     {
+        //creating a new instance of an element
         head = new Node;
-
         head->next = NULL;
         head->previous = NULL;
+
+        // copy data and key from parameter element to new element
         head->data = myElement.head->data;
         head->key = myElement.head->key;
     }
@@ -66,9 +68,12 @@ Element<T>::Element(const Element<T> &myElement)
 template <class T>
 Element<T>::Element(const T &d, const int &k)
 {
+    // initialize a new element
     head = new Node;
     head->next = NULL;
     head->previous = NULL;
+
+    // use parameters data and key for element attributes
     head->data = d;
     head->key = k;
 }
@@ -107,11 +112,12 @@ Element<T>::~Element()
 template <class T>
 int Element<T>::get_key()
 {
+    // check to see if element is null
     if (head)
     {
-        return head->key;
+        return head->key; // return key value
     }
-    return -1;
+    return -1; // return -1 for an empty element
 }
 
 /**
@@ -126,11 +132,12 @@ int Element<T>::get_key()
 template <class T>
 T Element<T>::get_data()
 {
+    // check to see if element is null
     if (head)
     {
-        return head->data;
+        return head->data; // return data value
     }
-    return -0;
+    return -0; // return -0 for an empty element
 }
 
 //==================================
