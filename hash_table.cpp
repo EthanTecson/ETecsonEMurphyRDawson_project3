@@ -129,7 +129,7 @@ T Element<T>::get_data()
     if (head){
         return head->data;
     }
-    return -0;
+    return 0;
 }
 
 
@@ -195,7 +195,7 @@ HashTable<T>::~HashTable(void) {
 template <class T>
 void HashTable<T>::insert(const T d, const T k)
 {
-    // Check if hash table is initiated to 0 first
+    // Check if hash table is initiated to 0 first or else we get segmentation error
     // Check if inserted item is a member (member method not made yet)
     Element<T> e(d,k);
     int position = k % slots;
@@ -229,7 +229,26 @@ void HashTable<T>::remove(const T k)
 template <class T>
 bool HashTable<T>::member(const T d, const T k) const
 {
-    // Code goes here
+
+    int position = k % slots;
+    auto it = table[position].begin();
+    auto end = table[position].end();
+
+    if (table[position].empty()){
+        return false;
+    }
+    else {
+        while (it != end)
+        {
+            if (it->get_data() == d && it->get_key() == k)
+            {
+                return true;
+            }
+            ++it;
+        }
+
+        return false;
+    }
 }
 
 
@@ -261,27 +280,3 @@ string HashTable<T>::to_string() const
     }
     return stream.str();
 }
-
-// template <class T>
-// string Set<T>::to_string(void) const
-// // Preconditions: A valid Set object must exist.
-// // Postconditions: Returns a string represention of the set, including all of the elements in original order.
-// {
-//     stringstream stream;
-//     Node *temp = head;
-//     while (temp != NULL)
-//     {
-//         // iterates through each node and adds its' item to the stream
-//         if (temp->next == NULL)
-//         {
-//             // final element does not have a trailing space
-//             stream << temp->item;
-//         }
-//         else
-//         {
-//             stream << temp->item << " ";
-//         }
-//         temp = temp->next;
-//     }
-//     return stream.str();
-// }

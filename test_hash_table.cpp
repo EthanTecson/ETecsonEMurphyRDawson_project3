@@ -62,27 +62,6 @@ void test_get_data()
     }
 }
 
-void test_to_string() 
-{
-    HashTable<int> ht(10);
-
-    ht.insert(10, 1);
-    ht.insert(11, 2);
-    ht.insert(12, 3);
-    ht.insert(13, 4);
-    ht.insert(14, 5);
-
-    cout << ht.to_string();
-
-    HashTable<int> empty_ht(0);
-    empty_ht.insert(10, 6);
-    // if (empty_ht.to_string() != "")
-    // {
-    //     cout << "Incorrect result of inserting into table. Expected and empty string But got\n\n"
-    //     << empty_ht.to_string() << endl;
-    // }
-
-}
 
 void test_insert()
 {
@@ -169,37 +148,60 @@ void test_insert()
 //     }
 // }
 
-// void test_member()
+void test_member()
+{
+    try
+    {
+        HashTable<int> empty_ht(0);
+        if (empty_ht.member(10, 6))
+        {
+            cout << "Incorrect membership in empty table" << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cout << "Error caused by trying to determine membership in empty table : " << e.what() << endl;
+    }
+    try
+    {
+        HashTable<int> ht(5);
+        ht.insert(10, 6);
+        if (ht.member(11, 6))
+        {
+            cout << "Incorrect membership in table" << endl;
+        }
+        if (!ht.member(10, 6))
+        {
+            cout << "Incorrect non-membership in table" << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error determining membership from table : " << e.what() << endl;
+    }
+}
+
+
+// void test_to_string() 
 // {
-//     try
-//     {
-//         HashTable<int> empty_ht(0);
-//         if (empty_ht.member(10, 6))
-//         {
-//             cout << "Incorrect membership in empty table" << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cout << "Error caused by trying to determine membership in empty table : " << e.what() << endl;
-//     }
-//     try
-//     {
-//         HashTable<int> ht(5);
-//         ht.insert(10, 6);
-//         if (ht.member(11, 6))
-//         {
-//             cout << "Incorrect membership in table" << endl;
-//         }
-//         if (!ht.member(10, 6))
-//         {
-//             cout << "Incorrect non-membership in table" << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error determining membership from table : " << e.what() << endl;
-//     }
+//     HashTable<int> ht(10);
+
+//     ht.insert(10, 1);
+//     ht.insert(11, 2);
+//     ht.insert(12, 3);
+//     ht.insert(13, 4);
+//     ht.insert(14, 5);
+
+//     cout << ht.to_string();
+
+//     HashTable<int> empty_ht(0);
+//     empty_ht.insert(10, 6);
+//     // if (empty_ht.to_string() != "")
+//     // {
+//     //     cout << "Incorrect result of inserting into table. Expected and empty string But got\n\n"
+//     //     << empty_ht.to_string() << endl;
+//     // }
+
 // }
 
 int main()
@@ -207,10 +209,10 @@ int main()
 
     test_get_key();
     test_get_data();
-    test_to_string(); 
+    // test_to_string(); 
     // test_insert();
     // test_remove();
-    // test_member();
+    test_member();
 
     cout << "Testing completed" << endl;
 
