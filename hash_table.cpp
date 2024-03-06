@@ -8,6 +8,9 @@
 #include "hash_table.h"
 #include <sstream>
 #include <list>
+#include <iostream>
+
+using namespace std;
 
 //==================================
 // Element Class
@@ -152,7 +155,10 @@ HashTable<T>::HashTable(int numSlots)
     //     array[i] = new list<T>();
     // }
     slots = numSlots; 
-    array = new list<T>[slots]; 
+    table = new list<Element<T>>[slots]; 
+    // for (int i = 0; i < slots; ++i){
+    //     array[i] = list<T>();
+    // }
 }
 
 // /**
@@ -199,7 +205,7 @@ HashTable<T>::HashTable(int numSlots)
  */
 template <class T>
 HashTable<T>::~HashTable(void) {
-    delete[] array; // Deallocate memory for the array
+    delete[] table; // Deallocate memory for the array
 }
 
 /**
@@ -218,7 +224,7 @@ void HashTable<T>::insert(const T d, const T k)
     // Check if inserted item is a member (member method not made yet)
     Element<T> e(d,k);
     int position = k % slots;
-    array[position].push_front(e);
+    table[position].push_front(e);
 }
 
 /**
@@ -261,23 +267,24 @@ bool HashTable<T>::member(const T d, const T k) const
  * @note Post-Condition: 
  * @returns 
  */
-// template <class T>
-// string HashTable<T>::to_string() const
-// {
-//     stringstream stream;
-//     int slots_counter = 0;
-//     for (int i = 0; i < slots; ++i){
-//         auto it = array[i].begin();
-//         auto end = array[i].end();
+template <class T>
+string HashTable<T>::to_string() const
+{
+    stringstream stream;
+    int slots_counter = 0;
+    for (int i = 0; i < slots; ++i){
+        auto it = table[i].begin();
+        auto end = table[i].end();
 
-//         while (it != end())
-//         {
-//             stream << *it.get_data();
-//             stream << " ";
-//         }
-//     }
-//     return stream.str();
-// }
+        while (it != end)
+        {
+            stream << it->get_data();
+            stream << " ";
+            ++it;
+        }
+    }
+    return stream.str();
+}
 
 // template <class T>
 // string Set<T>::to_string(void) const

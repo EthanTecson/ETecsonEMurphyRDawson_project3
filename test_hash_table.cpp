@@ -69,6 +69,8 @@ void test_to_string() {
     ht.insert(12, 8);
     ht.insert(13, 9);
     ht.insert(14, 10);
+
+    cout << ht.to_string() << endl;
 }
 
 // void test_insert()

@@ -14,29 +14,6 @@ using namespace std;
 // Hash Table Class
 //==================================
 
-#ifndef HASH_TABLE_H
-#define HASH_TABLE_H
-
-template <class T>
-class HashTable
-{
-private:
-    int slots;
-    list<T>* array; 
-
-public:
-    HashTable(int numSlots);                       // After looking at test cases, I think HashTable always needs to be initiated with a number of slots
-    HashTable(const HashTable<T> &myHashTable); // Copy Constructor
-    ~HashTable(void);                           // Deconstructor
-    void insert(const T d, const T k);          // Inserts data d with key k by inserting at head of double linked list. Reading says that if a slot is not empty, it contains a pointer that points to a doubly linked list.
-    void remove(const T k);                     // Removes element of value k (we are allowed to assume that all keys are distinct)
-    bool member(const T d, const T k) const;    // check to see if an element with data d and key k is apart of the HashTable
-    string to_string() const;
-};
-
-#endif
-
-
 //==================================
 // Element Class
 //==================================
@@ -65,6 +42,28 @@ public:
     ~Element(void);                       // Deconstrcutor
     int get_key();                        // Instructions say that this method should return the NUMERIC key but I was not sure if keys were able to non-numeric like a string.
     T get_data();                         // Returns data of element
+};
+
+#endif
+
+#ifndef HASH_TABLE_H
+#define HASH_TABLE_H
+
+template <class T>
+class HashTable
+{
+private:
+    int slots;
+    list<Element<T>>* table; 
+
+public:
+    HashTable(int numSlots);                       // After looking at test cases, I think HashTable always needs to be initiated with a number of slots
+    HashTable(const HashTable<T> &myHashTable); // Copy Constructor
+    ~HashTable(void);                           // Deconstructor
+    void insert(const T d, const T k);          // Inserts data d with key k by inserting at head of double linked list. Reading says that if a slot is not empty, it contains a pointer that points to a doubly linked list.
+    void remove(const T k);                     // Removes element of value k (we are allowed to assume that all keys are distinct)
+    bool member(const T d, const T k) const;    // check to see if an element with data d and key k is apart of the HashTable
+    string to_string() const;
 };
 
 #endif
