@@ -183,34 +183,55 @@ HashTable<T>::~HashTable(void)
 /**
  * @brief insert Class
  *
+<<<<<<< HEAD
+ *
+ *
+ * @note Pre-Condition:
+ * @note Post-Condition:
+=======
  * Inserts an element with data d and key k into the hash table
  *
  * @note Pre-Condition: d is of the same data type as the rest of the hash table
  * @note Post-Condition: none
+>>>>>>> 05bb0dc53623960e6a32bcccabf7311b61655e5f
  * @returns none
  */
 template <class T>
 void HashTable<T>::insert(const T d, const T k)
 {
-    Element<T> e(d, k);
-    if (!(member(d, k))) // should not insert duplicates
+    if (!(member(d, k))) // should only insert something not in the table
     {
-        int position = k % slots;
+        int position = hash(k);
+        % slots; // placeholder for the hash function
 
-        // Check if slot is empty (emptySlot function?)
-        // If yes, head = e
-        // Else, e->next = head->item, e->prev = NULL, head = e
+        Node<T> *insertedNode = new Node<T>(d, k); // create a new node
+        insertedNode->next = slots[position];      // set the next value of insertedNode to the current value of slots[position]
+        insertedNode->previous = nullptr           // set the previous value of  insertedNode to null
+
+            if (slots[position] != nullptr)
+        {                                             // if the current value of slots[position] is not null
+            slots[position]->previous = insertedNode; // set the previous value of slots[position] to insertedNode
+        }
+        slots[position] = insertedNode; // set the current value of slots[position] to insertedNode
     }
 }
 
 /**
  * @brief remove Class
  *
+<<<<<<< HEAD
+ *
+ *
+ * @note Pre-Condition:
+ * @note Post-Condition:
+ * @returns
+=======
  * Deletes the element with key k from the hash table
  *
  * @note Pre-Condition: none
  * @note Post-Condition: Element with key k is not in the hash table
  * @returns none
+>>>>>>> 05bb0dc53623960e6a32bcccabf7311b61655e5f
  */
 template <class T>
 void HashTable<T>::remove(const T k)
@@ -223,12 +244,21 @@ void HashTable<T>::remove(const T k)
 
 /**
  * @brief member Class
+<<<<<<< HEAD
+ *
+ *
+ *
+ * @note Pre-Condition:
+ * @note Post-Condition:
+ * @returns none
+=======
  * 
  * Checks to see if an element with data d and key k is in the hash table
  * 
  * @note Pre-Condition: none
  * @note Post-Condition: none
  * @returns True if element with data d and key k is in the hash table, false otherwise
+>>>>>>> 05bb0dc53623960e6a32bcccabf7311b61655e5f
  */
 template <class T>
 bool HashTable<T>::member(const T d, const T k) const
@@ -237,12 +267,21 @@ bool HashTable<T>::member(const T d, const T k) const
 
 /**
  * @brief to_string Class
+<<<<<<< HEAD
+ *
+ *
+ *
+ * @note Pre-Condition:
+ * @note Post-Condition:
+ * @returns
+=======
  * 
  * Creates a string representation of the hash table and returns it
  * 
  * @note Pre-Condition: none
  * @note Post-Condition: none
  * @returns string containing the hash table
+>>>>>>> 05bb0dc53623960e6a32bcccabf7311b61655e5f
  */
 template <class T>
 string HashTable<T>::to_string() const
