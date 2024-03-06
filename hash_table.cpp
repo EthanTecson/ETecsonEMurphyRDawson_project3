@@ -7,6 +7,9 @@
 
 #include "hash_table.h"
 #include <sstream>
+#include <list>
+
+using namespace std;
 
 //==================================
 // Element Class
@@ -209,6 +212,7 @@ HashTable<T>::~HashTable(void)
 template <class T>
 void HashTable<T>::insert(const T d, const int k)
 {
+    /**
     if (!(member(d, k))) // should only insert something not in the table
     {
         int position = hash(k);
@@ -224,6 +228,16 @@ void HashTable<T>::insert(const T d, const int k)
         }
         slots[position] = insertedNode; // set the current value of slots[position] to insertedNode
     }
+    */
+    Element<T> elem(d, k);
+    position = k % slots;
+    if (!(member(d,k)))
+    {
+        //access array at position
+            //list_name.push_front(elem);
+    }
+    
+
 }
 
 /**
@@ -241,7 +255,7 @@ void HashTable<T>::remove(const T k)
 {
     if ((member(d, k))) // should only remove somethiing in the table
     {
-        int position = hash(k); // placeholder for the hash function
+        int position = k % slots; // placeholder for the hash function
     }
 }
 
@@ -258,6 +272,14 @@ void HashTable<T>::remove(const T k)
 template <class T>
 bool HashTable<T>::member(const T d, const int k) const
 {
+    position = k % slots;
+    //access array at position
+        // iterate through array checking if .get_key == k
+            // if .get_data == d
+                //return true
+            // return false because keys are distinct
+        //return false
+
 }
 
 /**
