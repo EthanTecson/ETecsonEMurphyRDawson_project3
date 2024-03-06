@@ -135,27 +135,59 @@ T Element<T>::get_data()
 //==================================
 // Hash Table Class
 //==================================
-// Default Constructor
+/**
+ * @brief Constructor Class
+ *
+ * Creates a HashTable Object with slots set equal to parameter numSlots
+ *
+ * @note Pre-Condition: None
+ * @note Post-Condition: Creates a HashTable object
+ * @returns none
+ */
 template <class T>
 HashTable<T>::HashTable(int numSlots)
 {
     slots = numSlots;
 }
 
-// Copy Constructor
+/**
+ * @brief Constructor Class
+ *
+ * Creates a HashTable Object with slots set equal to parameter numSlots
+ *
+ * @note Pre-Condition: None
+ * @note Post-Condition: Creates a HashTable object
+ * @returns none
+ */
 template <class T>
 HashTable<T>::HashTable(const HashTable<T> &myHashTable)
 {
     slots = myHashTable.slots;
 }
 
-// Deconstructor
+/**
+ * @brief Deconstructor Class
+ *
+ * Cleans resources allocated to HashTable Class
+ *
+ * @note Pre-Condition: There exist a HashTable object
+ * @note Post-Condition: None
+ * @returns none
+ */
 template <class T>
 HashTable<T>::~HashTable(void)
 {
 }
 
-// Insert
+/**
+ * @brief insert Class
+ *
+ * 
+ *
+ * @note Pre-Condition: 
+ * @note Post-Condition: 
+ * @returns none
+ */
 template <class T>
 void HashTable<T>::insert(const T d, const T k)
 {
@@ -170,7 +202,15 @@ void HashTable<T>::insert(const T d, const T k)
     }
 }
 
-// Remove
+/**
+ * @brief remove Class
+ *
+ * 
+ *
+ * @note Pre-Condition: 
+ * @note Post-Condition: 
+ * @returns 
+ */
 template <class T>
 void HashTable<T>::remove(const T k)
 {
@@ -180,13 +220,29 @@ void HashTable<T>::remove(const T k)
     }
 }
 
-// Member
+/**
+ * @brief member Class
+ * 
+ * 
+ * 
+ * @note Pre-Condition: 
+ * @note Post-Condition: 
+ * @returns none
+ */
 template <class T>
 bool HashTable<T>::member(const T d, const T k) const
 {
 }
 
-// To-String
+/**
+ * @brief to_string Class
+ * 
+ * 
+ * 
+ * @note Pre-Condition: 
+ * @note Post-Condition: 
+ * @returns 
+ */
 template <class T>
 string HashTable<T>::to_string() const
 {
