@@ -62,20 +62,14 @@ void test_get_data()
     }
 }
 
-// void test_copy_constructor(){
-//     try
-//     {
-//         HashTable<int> table(5); 
-//         HashTable<int> copyTable(table);
-//         if (!(table == copyTable)){
-//             cout << "Incorrect result from copy constructor";
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error with copy constructor : " << e.what() << endl; 
-//     }
-// }
+void test_to_string() {
+    HashTable<int> ht(5);
+    ht.insert(10, 6);
+    ht.insert(11, 7);
+    ht.insert(12, 8);
+    ht.insert(13, 9);
+    ht.insert(14, 10);
+}
 
 // void test_insert()
 // {
@@ -200,7 +194,7 @@ int main()
 
     test_get_key();
     test_get_data();
-    // test_copy_constructor();
+    test_to_string(); 
     // test_insert();
     // test_remove();
     // test_member();

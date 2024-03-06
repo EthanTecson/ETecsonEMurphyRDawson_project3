@@ -6,6 +6,8 @@
 //=================================
 
 #include "hash_table.h"
+#include <sstream>
+#include <list>
 
 //==================================
 // Element Class
@@ -127,6 +129,7 @@ T Element<T>::get_data()
     return -0;
 }
 
+
 //==================================
 // Hash Table Class
 //==================================
@@ -143,40 +146,47 @@ T Element<T>::get_data()
 template <class T>
 HashTable<T>::HashTable(int numSlots)
 {
-    array = new T*[numSlots];
-    for (int i = 0; i < numSlots; ++i){
-        array[i] = nullptr;
-    }
+    // slots = numSlots; 
+    // array = new list<T>*[slots];
+    // for (int i = 0; i < slots; ++i){
+    //     array[i] = new list<T>();
+    // }
+    slots = numSlots; 
+    array = new list<T>[slots]; 
 }
 
-/**
- * @brief Constructor Class
- *
- * Creates a HashTable Object with slots set equal to parameter numSlots
- *
- * @note Pre-Condition: None
- * @note Post-Condition: Creates a HashTable object
- * @returns none
- */
+// /**
+//  * @brief Constructor Class
+//  *
+//  * Creates a HashTable Object with slots set equal to parameter numSlots
+//  *
+//  * @note Pre-Condition: None
+//  * @note Post-Condition: Creates a HashTable object
+//  * @returns none
+//  */
 // template <class T>
-// HashTable<T>::HashTable(const HashTable<T> &myHashTable)
-// {
+// HashTable<T>::HashTable(const HashTable<T> &myHashTable) {
 //     slots = myHashTable.slots;
-//     array = new T*[slots];
+//     array = new list<T>[slots];
+
+//     // Loop through each slot in the original hash table
 //     for (int i = 0; i < slots; ++i) {
-//         if (myHashTable.array[i] != nullptr) {
-//             // Allocate memory for a new element and copy the value
-//             array[i] = new T(*(myHashTable.array[i]));
-//         } else {
-//             array[i] = nullptr; // Set nullptr for empty slots
+//         // Check if the original slot is not empty
+//         if (!myHashTable.array[i].empty()) {
+//             // Create iterators for the beginning and end of the original slot's linked list
+//             auto it = myHashTable.array[i].begin();
+//             auto end = myHashTable.array[i].end();
+            
+//             // Loop through the elements in the original slot's linked list using iterators
+//             while (it != end) {
+//                 // Add a copy of the element to the new slot's linked list
+//                 array[i].push_back(*it);
+//                 ++it; // Move to the next element
+//             }
 //         }
 //     }
 // }
 
-template <class T>
-HashTable<T>::HashTable(const HashTable<T> &myHashTable) {
-    // write code
-}
 
 /**
  * @brief Deconstructor Class
@@ -188,48 +198,8 @@ HashTable<T>::HashTable(const HashTable<T> &myHashTable) {
  * @returns none
  */
 template <class T>
-HashTable<T>::~HashTable(void)
-{
-    // Deallocate memory for each slot of the array
-    for (int i = 0; i < slots; ++i) {
-        if (array[i] != nullptr) {
-            delete array[i];
-        }
-    }
-    // Deallocate memory for the array itself
-    delete[] array;
-}
-
-// Need to fix so that it iterates through the entire linked list at each slot
-template <class T>
-bool HashTable<T>::operator==(const HashTable<T>& other) const {
-
-    // This is not correct but is still here fo rreference
-
-    // Compare the number of slots
-    if (slots != other.slots) {
-        return false;
-    }
-
-    // Compare the elements in each slot
-    for (int i = 0; i < slots; ++i) {
-        // If one array is nullptr and the other is not, they are not equal
-        if ((array[i] == nullptr && other.array[i] != nullptr) ||
-            (array[i] != nullptr && other.array[i] == nullptr)) {
-            return false;
-        }
-        // If both arrays are nullptr, they are considered equal for this slot
-        if (array[i] == nullptr && other.array[i] == nullptr) {
-            continue;
-        }
-        // Compare the elements pointed to by the pointers
-        if (*array[i] != *other.array[i]) {
-            return false;
-        }
-    }
-
-    // If all comparisons passed, the hash tables are equal
-    return true;
+HashTable<T>::~HashTable(void) {
+    delete[] array; // Deallocate memory for the array
 }
 
 /**
@@ -244,37 +214,27 @@ bool HashTable<T>::operator==(const HashTable<T>& other) const {
 template <class T>
 void HashTable<T>::insert(const T d, const T k)
 {
-    Element<T> e(d,k);
-    if(!(member(d, k))) // should not insert duplicates
-    {
-        int position = k % slots;
 
-        // Check if slot is empty (emptySlot function?)
-            // If yes, head = e
-            // Else, e->next = head->item, e->prev = NULL, head = e
-    }
+    // Check if inserted item is a member (member method not made yet)
+    Element<T> e(d,k);
+    int position = k % slots;
+    array[position].push_front(e);
 }
 
-// /**
-//  * @brief remove Class
-//  *
-//  * 
-//  *
-//  * @note Pre-Condition: 
-//  * @note Post-Condition: 
-//  * @returns 
-//  */
-// template <class T>
-// void HashTable<T>::remove(const T k)
-// {
-//     /**
-//     if((member(d, k))) // should only remove somethiing in the table
-//     {
-//         int position = k % slots;
-//     }
-//     */
-
-// }              
+/**
+ * @brief remove Class
+ *
+ * 
+ *
+ * @note Pre-Condition: 
+ * @note Post-Condition: 
+ * @returns 
+ */
+template <class T>
+void HashTable<T>::remove(const T k)
+{
+    // Code goes here
+}              
 
 /**
  * @brief member Class
@@ -286,17 +246,9 @@ void HashTable<T>::insert(const T d, const T k)
  * @returns none
  */
 template <class T>
-bool HashTable<T>::member(const T d, const T k) const{
-
-    // Hash the key to find the correct slot
-    // Initiate a pointer to the head of the linked list that is pointed to by the value in the hashed slot
-    // traverse through the linked list to see if a given element has the same key and data as the given argument
-    // Check if the list is empty
-
-
-    // So how do we traverse the linked list?
-    // My thought is that we initiate a new pointer to the head of the linked list
-    // but HashTable has no attribute for pointers
+bool HashTable<T>::member(const T d, const T k) const
+{
+    // Code goes here
 }
 
 
@@ -309,8 +261,44 @@ bool HashTable<T>::member(const T d, const T k) const{
  * @note Post-Condition: 
  * @returns 
  */
-template <class T>
-string HashTable<T>::to_string() const
-{
+// template <class T>
+// string HashTable<T>::to_string() const
+// {
+//     stringstream stream;
+//     int slots_counter = 0;
+//     for (int i = 0; i < slots; ++i){
+//         auto it = array[i].begin();
+//         auto end = array[i].end();
 
-}
+//         while (it != end())
+//         {
+//             stream << *it.get_data();
+//             stream << " ";
+//         }
+//     }
+//     return stream.str();
+// }
+
+// template <class T>
+// string Set<T>::to_string(void) const
+// // Preconditions: A valid Set object must exist.
+// // Postconditions: Returns a string represention of the set, including all of the elements in original order.
+// {
+//     stringstream stream;
+//     Node *temp = head;
+//     while (temp != NULL)
+//     {
+//         // iterates through each node and adds its' item to the stream
+//         if (temp->next == NULL)
+//         {
+//             // final element does not have a trailing space
+//             stream << temp->item;
+//         }
+//         else
+//         {
+//             stream << temp->item << " ";
+//         }
+//         temp = temp->next;
+//     }
+//     return stream.str();
+// }

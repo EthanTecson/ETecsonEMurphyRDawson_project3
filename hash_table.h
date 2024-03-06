@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <list>
 using namespace std;
 
 //==================================
@@ -21,7 +22,7 @@ class HashTable
 {
 private:
     int slots;
-    T** array;
+    list<T>* array; 
 
 public:
     HashTable(int numSlots);                       // After looking at test cases, I think HashTable always needs to be initiated with a number of slots
