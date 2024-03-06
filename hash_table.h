@@ -21,7 +21,7 @@ class HashTable
 {
 private:
     int slots;
-
+    T** array;
 
 public:
     HashTable(int numSlots);                       // After looking at test cases, I think HashTable always needs to be initiated with a number of slots
