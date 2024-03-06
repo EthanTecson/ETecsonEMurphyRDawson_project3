@@ -64,7 +64,7 @@ Element<T>::Element(const Element<T> &myElement)
  * @returns none
  */
 template <class T>
-Element<T>::Element(const T &d, const T &k)
+Element<T>::Element(const T &d, const int &k)
 {
     head = new Node;
     head->next = NULL;

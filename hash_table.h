@@ -60,7 +60,7 @@ private:
 public:
     Element();                            // Can just initialize element without values
     Element(const Element<T> &myElement); // Copy constructor
-    Element(const T &d, const T &k);      // Initialize element with data and key
+    Element(const T &d, const int &k);      // Initialize element with data and key
     ~Element(void);                       // Deconstrcutor
     int get_key();                        // Instructions say that this method should return the NUMERIC key but I was not sure if keys were able to non-numeric like a string.
     T get_data();                         // Returns data of element
