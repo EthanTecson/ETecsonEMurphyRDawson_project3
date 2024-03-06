@@ -53,6 +53,7 @@ Element<T>::Element(const Element<T> &myElement)
         head->key = myElement.head->key;
     }
 }
+
 /**
  * @brief Constructor Class
  *
@@ -182,10 +183,10 @@ HashTable<T>::~HashTable(void)
 /**
  * @brief insert Class
  *
- * 
+ * Inserts an element with data d and key k into the hash table
  *
- * @note Pre-Condition: 
- * @note Post-Condition: 
+ * @note Pre-Condition: d is of the same data type as the rest of the hash table
+ * @note Post-Condition: none
  * @returns none
  */
 template <class T>
@@ -205,11 +206,11 @@ void HashTable<T>::insert(const T d, const T k)
 /**
  * @brief remove Class
  *
- * 
+ * Deletes the element with key k from the hash table
  *
- * @note Pre-Condition: 
- * @note Post-Condition: 
- * @returns 
+ * @note Pre-Condition: none
+ * @note Post-Condition: Element with key k is not in the hash table
+ * @returns none
  */
 template <class T>
 void HashTable<T>::remove(const T k)
@@ -223,11 +224,11 @@ void HashTable<T>::remove(const T k)
 /**
  * @brief member Class
  * 
+ * Checks to see if an element with data d and key k is in the hash table
  * 
- * 
- * @note Pre-Condition: 
- * @note Post-Condition: 
- * @returns none
+ * @note Pre-Condition: none
+ * @note Post-Condition: none
+ * @returns True if element with data d and key k is in the hash table, false otherwise
  */
 template <class T>
 bool HashTable<T>::member(const T d, const T k) const
@@ -237,11 +238,11 @@ bool HashTable<T>::member(const T d, const T k) const
 /**
  * @brief to_string Class
  * 
+ * Creates a string representation of the hash table and returns it
  * 
- * 
- * @note Pre-Condition: 
- * @note Post-Condition: 
- * @returns 
+ * @note Pre-Condition: none
+ * @note Post-Condition: none
+ * @returns string containing the hash table
  */
 template <class T>
 string HashTable<T>::to_string() const
