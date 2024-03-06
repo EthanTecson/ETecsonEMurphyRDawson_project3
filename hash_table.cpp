@@ -195,10 +195,28 @@ HashTable<T>::~HashTable(void) {
 template <class T>
 void HashTable<T>::insert(const T d, const T k)
 {
-    // Check if hash table is initiated to 0 first or else we get segmentation error
-    // Check if inserted item is a member (member method not made yet)
     Element<T> e(d,k);
     int position = k % slots;
+    // Check if hash table is initiated to 0 first or else we get segmentation error
+    if (slots == 0){
+        return;
+    }
+    // Check if inserted element is a member
+    else {
+        int position = k % slots;
+        auto it = table[position].begin();
+        auto end = table[position].end();
+
+        while (it != end)
+        {
+            if (it->get_data() == d && it->get_key() == k)
+            {
+                return;
+            }
+            ++it;
+        }
+    }
+    // Otherwise insert
     table[position].push_front(e);
 }
 
@@ -214,7 +232,29 @@ void HashTable<T>::insert(const T d, const T k)
 template <class T>
 void HashTable<T>::remove(const T k)
 {
-    // Code goes here
+    // Check if hash table is initiated to 0
+    if (slots == 0){
+        return;
+    }
+    // Check if element to be removed is in table
+    int position = k % slots;
+
+    auto it = table[position].begin();
+    auto end = table[position].end();
+
+    while (it != end)
+    {
+        // If element with given key is in table, create Element object of the same attributes and remove given Element object
+        if (it->get_key() == k)
+        {
+            table[position].erase(it);
+            return;
+        }
+        else 
+        {
+            ++it;
+        }
+    }
 }              
 
 /**
@@ -229,7 +269,6 @@ void HashTable<T>::remove(const T k)
 template <class T>
 bool HashTable<T>::member(const T d, const T k) const
 {
-
     int position = k % slots;
     auto it = table[position].begin();
     auto end = table[position].end();
@@ -246,7 +285,6 @@ bool HashTable<T>::member(const T d, const T k) const
             }
             ++it;
         }
-
         return false;
     }
 }
@@ -269,7 +307,7 @@ string HashTable<T>::to_string() const
     for (int i = 0; i < slots; ++i){
         auto it = table[i].begin();
         auto end = table[i].end();
-        stream << i << ":"; 
+        stream << i << ":" << " "; 
         while (it != end)
         {
             stream << "(" << it->get_data() << "," << it->get_key() << ")";

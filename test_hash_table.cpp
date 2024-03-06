@@ -28,7 +28,6 @@ void test_get_key()
         {
             cout << "Incorrect result from get key. Expected 6 but got : " << e.get_key() << endl;
         }
-        // Testing copy constructor
         Element<int> f(e); 
         if (e.get_key() != f.get_key())
         {
@@ -100,53 +99,53 @@ void test_insert()
     }
 }
 
-// void test_remove()
-// {
-//     try
-//     {
-//         HashTable<int> empty_ht(0);
-//         empty_ht.remove(6);
-//         if (empty_ht.to_string() != "")
-//         {
-//             cout << "Incorrect result of removing from empty table. Expected and empty string But got\n\n"
-//                  << empty_ht.to_string() << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cout << "Error caused by trying to remove from empty table : " << e.what() << endl;
-//     }
-//     try
-//     {
-//         HashTable<int> ht(5);
-//         ht.insert(10, 6);
-//         ht.remove(5);
-//         if (ht.to_string() != "0: \n1: (10,6) \n2: \n3: \n4: \n")
-//         {
-//             cout << "Incorrect result of removing non-member from table. Expected\n\n0: \n1: (10,6) \n2: \n3: \n4: \n\nBut got\n\n"
-//                  << ht.to_string() << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error removing non-member from table : " << e.what() << endl;
-//     }
-//     try
-//     {
-//         HashTable<int> ht2(5);
-//         ht2.insert(10, 6);
-//         ht2.remove(6);
-//         if (ht2.to_string() != "0: \n1: \n2: \n3: \n4: \n")
-//         {
-//             cout << "Incorrect result removing member from table. Expected\n\n0: \n1: \n2: \n3: \n4: \n\nBut got\n\n"
-//                  << ht2.to_string() << endl;
-//         }
-//     }
-//     catch (exception &e)
-//     {
-//         cerr << "Error removing member from table : " << e.what() << endl;
-//     }
-// }
+void test_remove()
+{
+    try
+    {
+        HashTable<int> empty_ht(0);
+        empty_ht.remove(6);
+        if (empty_ht.to_string() != "")
+        {
+            cout << "Incorrect result of removing from empty table. Expected and empty string But got\n\n"
+                 << empty_ht.to_string() << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cout << "Error caused by trying to remove from empty table : " << e.what() << endl;
+    }
+    try
+    {
+        HashTable<int> ht(5);
+        ht.insert(10, 6);
+        ht.remove(5);
+        if (ht.to_string() != "0: \n1: (10,6) \n2: \n3: \n4: \n")
+        {
+            cout << "Incorrect result of removing non-member from table. Expected\n\n0: \n1: (10,6) \n2: \n3: \n4: \n\nBut got\n\n"
+                 << ht.to_string() << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error removing non-member from table : " << e.what() << endl;
+    }
+    try
+    {
+        HashTable<int> ht2(5);
+        ht2.insert(10, 6);
+        ht2.remove(6);
+        if (ht2.to_string() != "0: \n1: \n2: \n3: \n4: \n")
+        {
+            cout << "Incorrect result removing member from table. Expected\n\n0: \n1: \n2: \n3: \n4: \n\nBut got\n\n"
+                 << ht2.to_string() << endl;
+        }
+    }
+    catch (exception &e)
+    {
+        cerr << "Error removing member from table : " << e.what() << endl;
+    }
+}
 
 void test_member()
 {
@@ -181,37 +180,12 @@ void test_member()
     }
 }
 
-
-// void test_to_string() 
-// {
-//     HashTable<int> ht(10);
-
-//     ht.insert(10, 1);
-//     ht.insert(11, 2);
-//     ht.insert(12, 3);
-//     ht.insert(13, 4);
-//     ht.insert(14, 5);
-
-//     cout << ht.to_string();
-
-//     HashTable<int> empty_ht(0);
-//     empty_ht.insert(10, 6);
-//     // if (empty_ht.to_string() != "")
-//     // {
-//     //     cout << "Incorrect result of inserting into table. Expected and empty string But got\n\n"
-//     //     << empty_ht.to_string() << endl;
-//     // }
-
-// }
-
 int main()
 {
-
     test_get_key();
     test_get_data();
-    // test_to_string(); 
-    // test_insert();
-    // test_remove();
+    test_insert();
+    test_remove();
     test_member();
 
     cout << "Testing completed" << endl;
