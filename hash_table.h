@@ -23,7 +23,7 @@ class Element
 private:
 
     T data; 
-    T key;
+    int key;
     
 public:
     Element();                            // Can just initialize element without values
@@ -48,7 +48,7 @@ class HashTable
 {
 private:
     int slots;
-    list<Element<T>>* table; 
+    list<Element<T> >* table; 
 
 public:
     HashTable(int numSlots);                       // After looking at test cases, I think HashTable always needs to be initiated with a number of slots

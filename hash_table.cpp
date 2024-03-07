@@ -129,7 +129,7 @@ template <class T>
 HashTable<T>::HashTable(int numSlots)
 {
     slots = numSlots;                    // Set slots to the given number of slots
-    table = new list<Element<T>>[slots]; // Create a new array of lists of elements
+    table = new list<Element<T> >[slots]; // Create a new array of lists of elements
 }
 
 // /**
@@ -144,8 +144,8 @@ HashTable<T>::HashTable(int numSlots)
 template <class T>
 HashTable<T>::HashTable(const HashTable<T> &myHashTable)
 {
-    slot = myHashTable.slots;            // Set slots to the given number of slots
-    table = new list<Element<T>>[slots]; // Create a new array of lists of elements
+    slots = myHashTable.slots;            // Set slots to the given number of slots
+    table = new list<Element<T> >[slots]; // Create a new array of lists of elements
 
     for (int i = 0; i < slots; ++i) // Copy the elements from the given hash table to the new hash table
     {

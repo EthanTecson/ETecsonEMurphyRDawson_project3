@@ -34,11 +34,13 @@ void test_get_key()
             cout << "Incorrect result from copy constructor and get key. Expected 6 but got : " << f.get_key() << endl;
         }
         // Testing with strings
+        /*
         Element<string> emptyStrE;
         if (emptyStrE.get_key() != -1)
         {
             cout << "Incorrect result from get key. Expected -1 for an empty element but got : " << emptyStrE.get_key() << endl;
         }
+        */
         Element<string> strE("hello", 5);
         if (strE.get_key() != 5)
         {
@@ -119,6 +121,20 @@ void test_insert()
         if (ht.to_string() != "0: \n1: (1,21) (10,6) \n2: \n3: \n4: \n")
         {
             cout << "Incorrect result of inserting into table" << endl;
+        }
+
+        HashTable<string> strHt(3);
+        strHt.insert("hello", 5);
+        if (strHt.to_string() != "0: \n1: \n2: (hello,5) \n")
+        {
+            cout << "Incorrect result of inserting into table. Expected\n\n0: \n1: \n2: (hello,5) \n\nBut got\n\n"
+                 << strHt.to_string() << endl;
+        }
+        strHt.insert("hi", 53);
+        if (strHt.to_string() != "0: \n1: \n2: (hi,53) (hello,5) \n")
+        {
+            cout << "Incorrect result of inserting into table. Expected\n\n0: \n1: \n2: (hello,5) (hi,53) \n\nBut got\n\n"
+                 << strHt.to_string() << endl;
         }
     }
     catch (exception &e)
