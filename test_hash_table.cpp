@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include "hash_table.cpp"
-#include <cassert>
 
 using namespace std;
 
@@ -250,7 +249,6 @@ void test_remove()
             cout << "Incorrect result of removing non-member from table. Expected\n0: (1.4,3)\n1: \n2: \n\nBut got\n\n"
                  << flHt.to_string() << endl;
         }
-        
     }
     catch (exception &e)
     {
@@ -353,6 +351,18 @@ void test_member()
     catch (exception &e)
     {
         cerr << "Error determining membership from table : " << e.what() << endl;
+    }
+}
+
+void test_get_slot_count()
+{
+    try
+    {
+        /* code */
+    }
+    catch (exception &e)
+    {
+        cout << "Error caused by trying to calculate the number of items in a given slot" << e.what() << endl;
     }
 }
 

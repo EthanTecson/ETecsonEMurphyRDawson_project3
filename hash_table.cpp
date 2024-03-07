@@ -31,7 +31,7 @@ Element<T>::Element()
 {
     // An element initialized with nothing should just be nothing
     data = T(); // Set to default null value for template data type
-    key = -1; 
+    key = -1;
 }
 
 /**
@@ -39,7 +39,7 @@ Element<T>::Element()
  *
  * Creates an Element object with values taken from parameter
  *
- * @param const T &d data and const int &k 
+ * @param const T &d data and const int &k
  * @note Pre-Condition: There exist an Element object that can be copied
  * @note Post-Condition: Element object has same data and key from parameter Element
  * @returns none
@@ -335,4 +335,21 @@ string HashTable<T>::to_string() const
         stream << "\n"; // Add a new line between slots
     }
     return stream.str();
+}
+
+/**
+ * @brief get_slot_count Class
+ *
+ * Calculates number of items in given HashTable slot by using the list class method size().
+ * Size() will return the number of elements in the linked list at the given slot.
+ *
+ * @param slot HashTable slot
+ * @note Pre-Condition: none
+ * @note Post-Condition: none
+ * @returns An integer representing the number of items in a HashTable slot
+ */
+template <class T>
+int HashTable<T>::get_slot_count(const int slot) const
+{
+    return table[slot].size();
 }
