@@ -258,11 +258,11 @@ void HashTable<T>::remove(const int k)
 /**
  * @brief member Class
  *
+ * Checks to see if element with parameter data d and key k is in the hash table
  *
- *
- * @note Pre-Condition:
- * @note Post-Condition:
- * @returns none
+ * @note Pre-Condition: none
+ * @note Post-Condition: none
+ * @returns True if element 
  */
 template <class T>
 bool HashTable<T>::member(const T d, const int k) const
@@ -270,7 +270,7 @@ bool HashTable<T>::member(const T d, const int k) const
     // Check if hash table is initiated to 0
     if (slots == 0)
     {
-        return false;
+        return false; // Empty hash table has no members
     }
 
     int position = k % slots;          // Get the position of the element in the table
@@ -298,10 +298,10 @@ bool HashTable<T>::member(const T d, const int k) const
 /**
  * @brief to_string Class
  *
+ * Converts a HashTable object into a string
  *
- *
- * @note Pre-Condition:
- * @note Post-Condition:
+ * @note Pre-Condition: none
+ * @note Post-Condition: none
  * @returns
  */
 template <class T>

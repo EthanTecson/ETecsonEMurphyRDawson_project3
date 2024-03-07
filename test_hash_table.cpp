@@ -242,20 +242,15 @@ void test_remove()
             cout << "Incorrect result of removing non-member from table. Expected\n\n0: \n1: \n2: (hello,5) \n\nBut got\n\n"
                  << strHt.to_string() << endl;
         }
-<<<<<<< HEAD
-=======
-        /*
         HashTable<float> flHt(3);
         flHt.insert(1.4, 3);
         flHt.remove(5);
-        if (flHt.to_string() != "0: \n1: (1.4,3) \n2: \n")
+        if (flHt.to_string() != "0: (1.4,3) \n1: \n2: \n")
         {
-            cout << "Incorrect result of removing non-member from table. Expected\n\n0: \n1: (1.4,3) \n2: \n\nBut got\n\n"
+            cout << "Incorrect result of removing non-member from table. Expected\n0: (1.4,3)\n1: \n2: \n\nBut got\n\n"
                  << flHt.to_string() << endl;
         }
-        */
         
->>>>>>> ac003d325ed11fba977ef2a1742ea03fe61b2d9e
     }
     catch (exception &e)
     {
@@ -340,8 +335,6 @@ void test_member()
             cout << "Incorrect non-membership in table" << endl;
         }
         if (strHt.member("hi", 5))
-<<<<<<< HEAD
-=======
         {
             cout << "Incorrect membership in table" << endl;
         }
@@ -353,7 +346,6 @@ void test_member()
             cout << "Incorrect non-membership in table" << endl;
         }
         if (flHt.member(0.2, 3))
->>>>>>> ac003d325ed11fba977ef2a1742ea03fe61b2d9e
         {
             cout << "Incorrect membership in table" << endl;
         }
