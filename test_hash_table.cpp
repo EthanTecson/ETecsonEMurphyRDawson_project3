@@ -28,7 +28,7 @@ void test_get_key()
         {
             cout << "Incorrect result from get key. Expected 6 but got : " << e.get_key() << endl;
         }
-        Element<int> f(e); 
+        Element<int> f(e);
         if (e.get_key() != f.get_key())
         {
             cout << "Incorrect result from copy constructor and get key. Expected 6 but got : " << f.get_key() << endl;
@@ -44,7 +44,7 @@ void test_get_key()
         Element<string> strE("hello", 5);
         if (strE.get_key() != 5)
         {
-            cout << "Incorrect result from get key. Expected 5 but got : " <<  strE.get_key() << endl;
+            cout << "Incorrect result from get key. Expected 5 but got : " << strE.get_key() << endl;
         }
     }
     catch (exception &e)
@@ -75,7 +75,7 @@ void test_get_data()
         Element<string> strE("hello", 5);
         if (strE.get_data() != "hello")
         {
-            cout << "Incorrect result from get data. Expected hello but got : " <<  strE.get_data() << endl;
+            cout << "Incorrect result from get data. Expected hello but got : " << strE.get_data() << endl;
         }
     }
     catch (exception &e)
@@ -83,7 +83,6 @@ void test_get_data()
         cerr << "Error getting data from element : " << e.what() << endl;
     }
 }
-
 
 void test_insert()
 {
