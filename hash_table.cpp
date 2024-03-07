@@ -29,8 +29,10 @@ template <class T>
 Element<T>::Element()
 {
     // An element initialized with nothing should just be nothing
-    data = 0;
+    data = T();
     key = -1;
+    //data(T());
+    //key(-1);
 }
 
 /**
@@ -43,7 +45,7 @@ Element<T>::Element()
  * @returns none
  */
 template <class T>
-Element<T>::Element(const T &d, const T &k)
+Element<T>::Element(const T &d, const int &k)
 {
     data = d;
     key = k;
@@ -189,7 +191,7 @@ HashTable<T>::~HashTable(void)
  * @returns none
  */
 template <class T>
-void HashTable<T>::insert(const T d, const T k)
+void HashTable<T>::insert(const T d, const int k)
 {
     Element<T> e(d, k); // Create an element with the given data and key
     int position = k % slots;
@@ -228,7 +230,7 @@ void HashTable<T>::insert(const T d, const T k)
  * @returns
  */
 template <class T>
-void HashTable<T>::remove(const T k)
+void HashTable<T>::remove(const int k)
 {
     // Check if hash table is initiated to 0
     if (slots == 0)
@@ -266,7 +268,7 @@ void HashTable<T>::remove(const T k)
  * @returns none
  */
 template <class T>
-bool HashTable<T>::member(const T d, const T k) const
+bool HashTable<T>::member(const T d, const int k) const
 {
     int position = k % slots;          // Get the position of the element in the table
     auto it = table[position].begin(); // iterator to the beginning of the list
