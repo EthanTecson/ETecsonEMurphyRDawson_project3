@@ -33,18 +33,29 @@ void test_get_key()
         {
             cout << "Incorrect result from copy constructor and get key. Expected 6 but got : " << f.get_key() << endl;
         }
+
         // Testing with strings
-        /*
         Element<string> emptyStrE;
         if (emptyStrE.get_key() != -1)
         {
             cout << "Incorrect result from get key. Expected -1 for an empty element but got : " << emptyStrE.get_key() << endl;
         }
-        */
         Element<string> strE("hello", 5);
         if (strE.get_key() != 5)
         {
             cout << "Incorrect result from get key. Expected 5 but got : " << strE.get_key() << endl;
+        }
+
+        //Testing with floats
+        Element<float> emptyFl;
+        if (emptyFl.get_key() != -1)
+        {
+            cout << "Incorrect result from get key. Expected -1 for an empty element but got : " << emptyFl.get_key() << endl;
+        }
+        Element<float> flHt(0.1, 3);
+        if (flHt.get_key() != 3)
+        {
+            cout << "Incorrect result from get key. Expected 3 but got : " << flHt.get_key() << endl;
         }
     }
     catch (exception &e)
@@ -77,6 +88,17 @@ void test_get_data()
         {
             cout << "Incorrect result from get data. Expected hello but got : " << strE.get_data() << endl;
         }
+
+        Element<float> emptyFl;
+        if (emptyFl.get_data() != 0.0)
+        {
+            cout << "Incorrect result from get data. Expected 0.0 but got : " << emptyFl.get_data() << endl;
+        }
+        Element<float> flHt(0.1, 3);
+        if (abs(flHt.get_data()-0.1) < 1e-9)
+        {
+            cout << "Incorrect result from get data. Expected 0.1 but got : " << flHt.get_data() << endl;
+        }
     }
     catch (exception &e)
     {
@@ -101,6 +123,14 @@ void test_insert()
         {
             cout << "Incorrect result of inserting into table. Expected and empty string But got\n\n"
                  << empty_ht.to_string() << endl;
+        }
+
+        HashTable<float> emptyFl(0);
+        emptyFl.insert(0.1, 3);
+        if (emptyFl.to_string() != "")
+        {
+            cout << "Incorrect result of inserting into table. Expected and empty string But got\n\n"
+                 << emptyFl.to_string() << endl;
         }
     }
     catch (exception &e)
@@ -153,6 +183,14 @@ void test_remove()
             cout << "Incorrect result of removing from empty table. Expected and empty string But got\n\n"
                  << empty_ht.to_string() << endl;
         }
+
+        HashTable<string> emptyStrHt(0);
+        emptyStrHt.remove(4);
+        if (emptyStrHt.to_string() != "")
+        {
+            cout << "Incorrect result of removing from empty table. Expected and empty string But got\n\n"
+                 << emptyStrHt.to_string() << endl;
+        }
     }
     catch (exception &e)
     {
@@ -168,6 +206,16 @@ void test_remove()
             cout << "Incorrect result of removing non-member from table. Expected\n\n0: \n1: (10,6) \n2: \n3: \n4: \n\nBut got\n\n"
                  << ht.to_string() << endl;
         }
+
+        HashTable<string> strHt(3);
+        strHt.insert("hello", 5);
+        strHt.remove(4);
+        if (strHt.to_string() != "0: \n1: \n2: (hello,5) \n")
+        {
+            cout << "Incorrect result of removing non-member from table. Expected\n\n0: \n1: \n2: (hello,5) \n\nBut got\n\n"
+                 << strHt.to_string() << endl;
+        }
+
     }
     catch (exception &e)
     {
@@ -183,6 +231,15 @@ void test_remove()
             cout << "Incorrect result removing member from table. Expected\n\n0: \n1: \n2: \n3: \n4: \n\nBut got\n\n"
                  << ht2.to_string() << endl;
         }
+
+        HashTable<string> strHt2(3);
+        strHt2.insert("hello", 5);
+        strHt2.remove(5);
+        if (strHt2.to_string() != "0: \n1: \n2: \n")
+        {
+            cout << "Incorrect result removing member from table. Expected\n\n0: \n1: \n2: \n\nBut got\n\n"
+                 << strHt2.to_string() << endl;
+        }
     }
     catch (exception &e)
     {
@@ -196,6 +253,11 @@ void test_member()
     {
         HashTable<int> empty_ht(0);
         if (empty_ht.member(10, 6))
+        {
+            cout << "Incorrect membership in empty table" << endl;
+        }
+        HashTable<string> emptyStrHt(0);
+        if (emptyStrHt.member("hello", 5))
         {
             cout << "Incorrect membership in empty table" << endl;
         }
@@ -215,6 +277,17 @@ void test_member()
         if (!ht.member(10, 6))
         {
             cout << "Incorrect non-membership in table" << endl;
+        }
+
+        HashTable<string> strHt(3);
+        strHt.insert("hello", 5);
+        if(!strHt.member("hello", 5))
+        {
+            cout << "Incorrect non-membership in table" << endl;
+        }
+        if(strHt.member("hi", 5))
+        {
+            cout << "Incorrect membership in table" << endl;
         }
     }
     catch (exception &e)
