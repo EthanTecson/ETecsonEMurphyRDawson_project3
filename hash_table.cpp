@@ -31,8 +31,8 @@ Element<T>::Element()
     // An element initialized with nothing should just be nothing
     data = T();
     key = -1;
-    //data(T());
-    //key(-1);
+    // data(T());
+    // key(-1);
 }
 
 /**
