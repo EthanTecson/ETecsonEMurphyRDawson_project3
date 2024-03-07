@@ -262,7 +262,7 @@ void HashTable<T>::remove(const int k)
  *
  * @note Pre-Condition: none
  * @note Post-Condition: none
- * @returns True if element 
+ * @returns True if element
  */
 template <class T>
 bool HashTable<T>::member(const T d, const int k) const
@@ -289,7 +289,7 @@ bool HashTable<T>::member(const T d, const int k) const
             {
                 return true;
             }
-            ++it;
+            ++it; // Move to the next element in the list
         }
         return false;
     }
