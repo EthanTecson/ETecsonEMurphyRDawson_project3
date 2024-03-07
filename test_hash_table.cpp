@@ -33,6 +33,17 @@ void test_get_key()
         {
             cout << "Incorrect result from copy constructor and get key. Expected 6 but got : " << f.get_key() << endl;
         }
+        // Testing with strings
+        Element<string> emptyStrE;
+        if (emptyStrE.get_key() != -1)
+        {
+            cout << "Incorrect result from get key. Expected -1 for an empty element but got : " << emptyStrE.get_key() << endl;
+        }
+        Element<string> strE("hello", 5);
+        if (strE.get_key() != 5)
+        {
+            cout << "Incorrect result from get key. Expected 5 but got : " <<  strE.get_key() << endl;
+        }
     }
     catch (exception &e)
     {
@@ -54,6 +65,16 @@ void test_get_data()
         {
             cout << "Incorrect result from get data. Expected 10 but got : " << e.get_data() << endl;
         }
+        Element<string> emptyStrE;
+        if (emptyStrE.get_data() != "")
+        {
+            cout << "Incorrect result from get key. Expected the empty string for an empty element but got : " << emptyStrE.get_key() << endl;
+        }
+        Element<string> strE("hello", 5);
+        if (strE.get_data() != "hello")
+        {
+            cout << "Incorrect result from get data. Expected hello but got : " <<  strE.get_data() << endl;
+        }
     }
     catch (exception &e)
     {
@@ -69,6 +90,13 @@ void test_insert()
         HashTable<int> empty_ht(0);
         empty_ht.insert(10, 6);
         if (empty_ht.to_string() != "")
+        {
+            cout << "Incorrect result of inserting into table. Expected and empty string But got\n\n"
+                 << empty_ht.to_string() << endl;
+        }
+        HashTable<string> emptyStrHt(0);
+        emptyStrHt.insert("hello", 5);
+        if (emptyStrHt.to_string() != "")
         {
             cout << "Incorrect result of inserting into table. Expected and empty string But got\n\n"
                  << empty_ht.to_string() << endl;
