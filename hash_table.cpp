@@ -246,12 +246,12 @@ void HashTable<T>::remove(const T k)
         // If element with given key is in table, create Element object of the same attributes and remove given Element object
         if (it->get_key() == k)
         {
-            table[position].erase(it);
+            table[position].erase(it); // Remove the element from the list
             return;
         }
         else
         {
-            ++it;
+            ++it; // Move to the next element in the list
         }
     }
 }
@@ -302,21 +302,21 @@ bool HashTable<T>::member(const T d, const T k) const
 template <class T>
 string HashTable<T>::to_string() const
 {
-    stringstream stream;
-    int slots_counter = 0;
-    for (int i = 0; i < slots; ++i)
+    stringstream stream;            // Create a string stream
+    int slots_counter = 0;          // Counter for the number of slots in the table
+    for (int i = 0; i < slots; ++i) // Iterate through the table
     {
-        auto it = table[i].begin();
-        auto end = table[i].end();
-        stream << i << ":"
+        auto it = table[i].begin(); // iterator to the beginning of the list
+        auto end = table[i].end();  // end of the list
+        stream << i << ":"          // Print the slot number
                << " ";
-        while (it != end)
+        while (it != end) // Print the elements in the list
         {
-            stream << "(" << it->get_data() << "," << it->get_key() << ")";
-            stream << " ";
-            ++it;
+            stream << "(" << it->get_data() << "," << it->get_key() << ")"; // Print the element
+            stream << " ";                                                  // Add a space between elements
+            ++it;                                                           // Move to the next element in the list
         }
-        stream << "\n";
+        stream << "\n"; // Add a new line between slots
     }
     return stream.str();
 }
