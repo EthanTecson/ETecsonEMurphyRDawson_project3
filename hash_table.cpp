@@ -28,7 +28,9 @@ using namespace std;
 template <class T>
 Element<T>::Element()
 {
-    head = NULL;
+    // An element initialized with nothing should just be nothing
+    data = 0;
+    key = -1;
 }
 
 /**
@@ -41,20 +43,12 @@ Element<T>::Element()
  * @returns none
  */
 template <class T>
-Element<T>::Element(const Element<T> &myElement)
+Element<T>::Element(const T &d, const T &k)
 {
-    if (myElement.head == NULL){
-        head = NULL;
-    }
-    else {
-    head = new Node;
-
-    head->next = NULL;
-    head->previous = NULL;
-    head->data = myElement.head->data;
-    head->key = myElement.head->key;
-    }
+    data = d;
+    key = k;
 }
+
 /**
  * @brief Constructor Class
  *
@@ -65,13 +59,10 @@ Element<T>::Element(const Element<T> &myElement)
  * @returns none
  */
 template <class T>
-Element<T>::Element(const T &d, const T &k)
+Element<T>::Element(const Element<T> &myElement)
 {
-    head = new Node;
-    head->next = NULL;
-    head->previous = NULL;
-    head->data = d;
-    head->key = k;
+    data = myElement.data;
+    key = myElement.key;
 }
 
 /**
@@ -86,14 +77,7 @@ Element<T>::Element(const T &d, const T &k)
 template <class T>
 Element<T>::~Element()
 {
-    Node *ptr = head; // Set pointer to head
-    while (ptr != NULL)
-    {
-        Node *next = ptr->next; // Set a pointer to next value of ptr
-        delete ptr;             // Delete ptr node
-        ptr = next;
-    }
-    head = NULL;
+    // Nothing needed
 }
 
 /**
@@ -108,10 +92,7 @@ Element<T>::~Element()
 template <class T>
 int Element<T>::get_key()
 {
-    if (head){
-        return head->key;
-    }
-    return -1;
+    return key;
 }
 
 /**
@@ -126,11 +107,9 @@ int Element<T>::get_key()
 template <class T>
 T Element<T>::get_data()
 {
-    if (head){
-        return head->data;
-    }
-    return 0;
+    return data;
 }
+
 
 
 //==================================

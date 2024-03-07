@@ -11,10 +11,6 @@
 using namespace std;
 
 //==================================
-// Hash Table Class
-//==================================
-
-//==================================
 // Element Class
 //==================================
 
@@ -26,15 +22,9 @@ class Element
 {
 private:
 
-    struct Node {
-        T data; 
-        T key;
-        Node *next;
-        Node *previous;
-    };
-
-    Node *head;
-
+    T data; 
+    T key;
+    
 public:
     Element();                            // Can just initialize element without values
     Element(const Element<T> &myElement); // Copy constructor
@@ -45,6 +35,10 @@ public:
 };
 
 #endif
+
+//==================================
+// Hash Table Class
+//==================================
 
 #ifndef HASH_TABLE_H
 #define HASH_TABLE_H
