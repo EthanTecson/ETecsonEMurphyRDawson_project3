@@ -129,7 +129,7 @@ template <class T>
 HashTable<T>::HashTable(int numSlots)
 {
     slots = numSlots;                    // Set slots to the given number of slots
-    table = new list<Element<T> >[slots]; // Create a new array of lists of elements
+    table = new list<Element<T>>[slots]; // Create a new array of lists of elements
 }
 
 // /**
@@ -144,8 +144,8 @@ HashTable<T>::HashTable(int numSlots)
 template <class T>
 HashTable<T>::HashTable(const HashTable<T> &myHashTable)
 {
-    slots = myHashTable.slots;            // Set slots to the given number of slots
-    table = new list<Element<T> >[slots]; // Create a new array of lists of elements
+    slots = myHashTable.slots;           // Set slots to the given number of slots
+    table = new list<Element<T>>[slots]; // Create a new array of lists of elements
 
     for (int i = 0; i < slots; ++i) // Copy the elements from the given hash table to the new hash table
     {
@@ -193,28 +193,25 @@ HashTable<T>::~HashTable(void)
 template <class T>
 void HashTable<T>::insert(const T d, const int k)
 {
-    Element<T> e(d, k); // Create an element with the given data and key
-    int position = k % slots;
-    // Check if hash table is initiated to 0 first or else we get segmentation error
+    // Check if hash table is initiated to 0
     if (slots == 0)
     {
         return;
     }
-    // Check if inserted element is a member
-    else
-    {
-        int position = k % slots;          // Get the position of the element in the table
-        auto it = table[position].begin(); // iterator to the beginning of the list
-        auto end = table[position].end();  // end of the list
+    Element<T> e(d, k); // Create an element with the given data and key
+    int position = k % slots;
 
-        while (it != end) // Check if the element is already in the table
+    // Check if inserted element is a member
+    auto it = table[position].begin(); // iterator to the beginning of the list
+    auto end = table[position].end();  // end of the list
+
+    while (it != end) // Check if the element is already in the table
+    {
+        if (it->get_data() == d && it->get_key() == k) // If the element is already in the table, don't insert it again
         {
-            if (it->get_data() == d && it->get_key() == k) // If the element is already in the table, don't insert it again
-            {
-                return;
-            }
-            ++it; // Move to the next element in the list
+            return;
         }
+        ++it; // Move to the next element in the list
     }
     // Otherwise insert
     table[position].push_front(e); // Insert the element at the front of the list
@@ -270,6 +267,12 @@ void HashTable<T>::remove(const int k)
 template <class T>
 bool HashTable<T>::member(const T d, const int k) const
 {
+    // Check if hash table is initiated to 0
+    if (slots == 0)
+    {
+        return false;
+    }
+
     int position = k % slots;          // Get the position of the element in the table
     auto it = table[position].begin(); // iterator to the beginning of the list
     auto end = table[position].end();  // end of the list
