@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "hash_table.cpp"
+#include <cassert>
 
 using namespace std;
 
@@ -46,7 +47,7 @@ void test_get_key()
             cout << "Incorrect result from get key. Expected 5 but got : " << strE.get_key() << endl;
         }
 
-        //Testing with floats
+        // Testing with floats
         Element<float> emptyFl;
         if (emptyFl.get_key() != -1)
         {
@@ -95,7 +96,7 @@ void test_get_data()
             cout << "Incorrect result from get data. Expected 0.0 but got : " << emptyFl.get_data() << endl;
         }
         Element<float> flHt(0.1, 3);
-        if (abs(flHt.get_data()-0.1) < 1e-9)
+        if (abs(flHt.get_data() - 0.1) < 1e-9)
         {
             cout << "Incorrect result from get data. Expected 0.1 but got : " << flHt.get_data() << endl;
         }
@@ -215,7 +216,6 @@ void test_remove()
             cout << "Incorrect result of removing non-member from table. Expected\n\n0: \n1: \n2: (hello,5) \n\nBut got\n\n"
                  << strHt.to_string() << endl;
         }
-
     }
     catch (exception &e)
     {
@@ -281,11 +281,11 @@ void test_member()
 
         HashTable<string> strHt(3);
         strHt.insert("hello", 5);
-        if(!strHt.member("hello", 5))
+        if (!strHt.member("hello", 5))
         {
             cout << "Incorrect non-membership in table" << endl;
         }
-        if(strHt.member("hi", 5))
+        if (strHt.member("hi", 5))
         {
             cout << "Incorrect membership in table" << endl;
         }
