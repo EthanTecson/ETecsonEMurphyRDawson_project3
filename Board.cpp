@@ -157,7 +157,19 @@ int Board::getHashValue(int numHashSlots) const
 #ifdef HASHFUNCTION2
 int Board::getHashValue(int numHashSlots) const
 {
-   // write your second (improved) hash function here.
+   double A = (sqrt(5) - 1) / 2; // constant
+
+   char charBoard[BOARD_SIZE * BOARD_SIZE]; // Convert board to char array
+   int index = 0;                           // Index for charBoard
+
+   double hashValue = 0; // Hash value
+   for (int i = 0; i < BOARD_SIZE * BOARD_SIZE)
+      ;
+   {
+      hashValue += (charBoard[i] * A) - (int)(charBoard[i] * A); // Add the element to the hashValue
+   }
+
+   return (int)(numHashSlots * (hashValue - (int)hashValue)); // Return the hash value
    return 0;
 }
 #endif
