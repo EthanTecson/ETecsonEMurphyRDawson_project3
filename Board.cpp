@@ -9,6 +9,7 @@
 #include "Board.h"
 #include <iostream>
 #include <cstring>
+#include <cmath>
 using namespace std;
 
 //============================================================================
@@ -137,9 +138,9 @@ int Board::getHashValue(int numHashSlots) const
 {
    int sum = 0;
 
-   for (int i = 0; i < 6; ++i)
+   for (int i = 0; i < BOARD_SIZE; ++i)
    {
-      for (int j = 0; i < 6; ++i)
+      for (int j = 0; j < BOARD_SIZE; ++j)
       {
          sum += board[i][j] - 32;
       }
@@ -159,18 +160,19 @@ int Board::getHashValue(int numHashSlots) const
 {
    double A = (sqrt(5) - 1) / 2; // constant
 
-   char charBoard[BOARD_SIZE * BOARD_SIZE]; // Convert board to char array
-   int index = 0;                           // Index for charBoard
+   // char charBoard[BOARD_SIZE * BOARD_SIZE]; // Convert board to char array
+   // int index = 0;                           // Index for charBoard
 
    double hashValue = 0; // Hash value
-   for (int i = 0; i < BOARD_SIZE * BOARD_SIZE)
-      ;
+   for (int i = 0; i < BOARD_SIZE; ++i)
    {
-      hashValue += (charBoard[i] * A) - (int)(charBoard[i] * A); // Add the element to the hashValue
+      for (int j = 0; j < BOARD_SIZE; ++j)
+      {
+         hashValue += (board[i] * A) - (int)(board[i] * A); // Add the element to the hashValue
+      }
    }
 
    return (int)(numHashSlots * (hashValue - (int)hashValue)); // Return the hash value
-   return 0;
 }
 #endif
 //============================================================================
