@@ -358,7 +358,54 @@ void test_get_slot_count()
 {
     try
     {
-        /* code */
+        HashTable<int> ht(3);
+        ht.insert(3, 5);
+        ht.insert(3, 3);
+        ht.insert(3, 4);
+        ht.insert(3, 2);
+
+        if (ht.get_slot_count(0) != 1)
+        {
+            cout << "Incorrect result from get slot count. Expected 1 but got : " << ht.get_slot_count(0) << endl;
+        }
+        if (ht.get_slot_count(1) != 1)
+        {
+            cout << "Incorrect result from get slot count. Expected 1 but got : " << ht.get_slot_count(1) << endl;
+        }
+        if (ht.get_slot_count(2) != 2)
+        {
+            cout << "Incorrect result from get slot count. Expected 2 but got : " << ht.get_slot_count(2) << endl;
+        }
+
+        HashTable<string> strHt(3);
+        strHt.insert("hello", 5);
+
+        if (strHt.get_slot_count(0) != 0)
+        {
+            cout << "Incorrect result from get slot count. Expected 0 but got : " << strHt.get_slot_count(0) << endl;
+        }
+        if (strHt.get_slot_count(1) != 0)
+        {
+            cout << "Incorrect result from get slot count. Expected 0 but got : " << strHt.get_slot_count(1) << endl;
+        }
+        if (strHt.get_slot_count(2) != 1)
+        {
+            cout << "Incorrect result from get slot count. Expected 1 but got : " << strHt.get_slot_count(2) << endl;
+        }
+
+        HashTable<float> flHt(3);
+        if (flHt.get_slot_count(0) != 0)
+        {
+            cout << "Incorrect result from get slot count. Expected 0 but got : " << flHt.get_slot_count(0) << endl;
+        }
+        if (flHt.get_slot_count(1) != 0)
+        {
+            cout << "Incorrect result from get slot count. Expected 0 but got : " << flHt.get_slot_count(1) << endl;
+        }
+        if (flHt.get_slot_count(2) != 0)
+        {
+            cout << "Incorrect result from get slot count. Expected 0 but got : " << flHt.get_slot_count(2) << endl;
+        }
     }
     catch (exception &e)
     {
@@ -373,6 +420,7 @@ int main()
     test_insert();
     test_remove();
     test_member();
+    test_get_slot_count();
 
     cout << "Testing completed" << endl;
 
