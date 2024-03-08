@@ -25,4 +25,4 @@ hash_table.o: hash_table.cpp hash_table.h
 
 
 clean:
-	rm *.o hash1 hash2 hash3 test sampleRead a.out
+	rm *.o hash1 hash2 hash3 test
