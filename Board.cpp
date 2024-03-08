@@ -169,7 +169,31 @@ int Board::getHashValue(int numHashSlots) const
 int Board::getHashValue(int numHashSlots) const
 {
    // write your very best hash function here.
+
+   double c = (sqrt(5) - 1) / 2; //
+   double m = numHashSlots;      // Table size
+
+   char charBoard[BOARD_SIZE * BOARD_SIZE]; // Convert board to char array
+   int index = 0;                           // Index for charBoard
+   for (int i = 0; i < BOARD_SIZE; i++)     // Convert board to char array
+   {
+      for (int j = 0; j < BOARD_SIZE; j++) // for each element in the board
+      {
+         charBoard[index++] = board[i][j]; // Add the element to the charBoard
+      }
+   }
+
+   int hashValue = 0;                                // Hash value
+   for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) // for each element in the charBoard
+   {
+      hashValue += charBoard[i] * pow(c, i);           // Add the element to the hashValue
+      hashValue %= numHashSlots;                       // Mod the hashValue by the table size
+      hashValue = floor(m * fmod((hashValue * c), 1)); // Hash the value
+   }
+
    return 0;
+
+   return hashValue;
 }
 #endif
 //============================================================================
