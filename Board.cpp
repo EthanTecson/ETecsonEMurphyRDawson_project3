@@ -132,12 +132,18 @@ istream &operator>>(istream &is, Board &b)
 // We first convert a board into a char array (see Char2Board).  We then compute
 // a function based on the numbers in this storage format.
 //============================================================================
-#ifdef HASHFUNCTION1 //
+#ifdef HASHFUNCTION1
 int Board::getHashValue(int numHashSlots) const
 {
-   // write your first hash function here.
+   for (int i = 0; i < 6; ++i)
+   {
+      for (int j = 0; i < 6; ++i)
+      {
+         sum += board[i][j] - 32;
+      }
+   }
 
-   return 0;
+   return sum % numHashSlots;
 }
 #endif
 //============================================================================

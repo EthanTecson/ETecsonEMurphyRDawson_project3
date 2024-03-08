@@ -23,28 +23,28 @@ test_hash_table.o: test_hash_table.cpp
 hash_table.o: hash_table.cpp hash_table.h 
 	g++ -std=c++11 -c hash_table.cpp
 
-# Compiles sampleRead
-sampleRead: sampleRead.o Board.o
-	g++ sampleRead.o Board.o -o sampleRead
+# # Compiles sampleRead
+# sampleRead: sampleRead.o Board.o
+# 	g++ sampleRead.o Board.o -o sampleRead
 
-sampleRead.o: sampleRead.cpp
-	g++ -std=c++11 -c sampleRead.cpp
-
-Board.o: Board.cpp Board.h
-	g++ -std=c++11 -c Board.cpp
-
-# # Hash 1
-# hash1: main.o Board.o hash_table.o
-# 	g++ -DHASHFUNCTION1 main.o Board.p hash_table.o -o hash1
-
-# main.o: main.cpp
-# 	g++ -std=c++11 -c main.cpp
+# sampleRead.o: sampleRead.cpp
+# 	g++ -std=c++11 -c sampleRead.cpp
 
 # Board.o: Board.cpp Board.h
 # 	g++ -std=c++11 -c Board.cpp
 
-# hash_table.o: hash_table.cpp hash_table.h 
-# 	g++ -std=c++11 -c hash_table.cpp
+# Hash 1
+hash1: Board.o main.o hash_table.o
+	g++ -DHASHFUNCTION1 main.o Board.o hash_table.o -o hash1
+
+Board.o: Board.cpp Board.h
+	g++ -std=c++11 -c Board.cpp
+
+main.o: main.cpp Board.h
+	g++ -std=c++11 -c main.cpp
+
+hash_table.o: hash_table.cpp hash_table.h 
+	g++ -std=c++11 -c hash_table.cpp
 
 # # Hash 2
 # hash2: main.o Board.o hash_table.o
