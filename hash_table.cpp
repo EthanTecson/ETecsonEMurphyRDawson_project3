@@ -9,7 +9,6 @@
 #include <sstream>
 #include <list>
 #include <iostream>
-
 using namespace std;
 
 //==================================
@@ -22,8 +21,10 @@ using namespace std;
  * Creates an Element Object with no values for key or data
  *
  * @param none
+ *
  * @note Pre-Condition: none
  * @note Post-Condition: Creates an Element object
+ *
  * @returns none
  */
 template <class T>
@@ -39,10 +40,12 @@ Element<T>::Element()
  *
  * Creates an Element object with values taken from parameter
  *
- * @param d the data we want to initiate the element with
- * @param k the key we want to initiate the element with
+ * @param d - the data we want to initiate the element with
+ * @param k - the key we want to initiate the element with
+ *
  * @note Pre-Condition: There exist an Element object that can be copied
  * @note Post-Condition: Element object has same data and key from parameter Element
+ *
  * @returns none
  */
 template <class T>
@@ -58,9 +61,11 @@ Element<T>::Element(const T &d, const int &k)
  *
  * Creates an Element object with values taken from argument
  *
- * @param myElement Element object to be copied
+ * @param myElement - Element object to be copied
+ *
  * @note Pre-Condition: none
  * @note Post-Condition: Creates an Element object whose values are set to the given arguments
+ *
  * @returns none
  */
 template <class T>
@@ -76,8 +81,10 @@ Element<T>::Element(const Element<T> &myElement)
  * Cleans resources allocated to Element Class
  *
  * @param none
+ *
  * @note Pre-Condition: There exist an Element object
  * @note Post-Condition: none
+ *
  * @returns none
  */
 template <class T>
@@ -92,8 +99,10 @@ Element<T>::~Element()
  * Obtains key value from a given element
  *
  * @param none
+ *
  * @note Pre-Condition: There exist an Element object with a key
  * @note Post-Condition: none
+ *
  * @returns element object's key
  */
 template <class T>
@@ -108,8 +117,10 @@ int Element<T>::get_key()
  * Obtains data value from a given element
  *
  * @param none
+ *
  * @note Pre-Condition: There exist an Element object with an object
  * @note Post-Condition: none
+ *
  * @returns element object's data value
  */
 template <class T>
@@ -127,9 +138,11 @@ T Element<T>::get_data()
  *
  * Creates a HashTable Object with slots set equal to parameter numSlots
  *
- * @param int numSlots
+ * @param numSlots - the number of slots the HashTable is to be initiated with
+ *
  * @note Pre-Condition: none
  * @note Post-Condition: Creates a HashTable object
+ *
  * @returns none
  */
 template <class T>
@@ -144,9 +157,11 @@ HashTable<T>::HashTable(int numSlots)
  *
  * Copies a parameter HashTable object
  *
- * @param const HashTable<T> &myHashTable - hash table to be copied
+ * @param myHashTable - hash table to be copied
+ *
  * @note Pre-Condition: none
  * @note Post-Condition: Creates a HashTable object
+ *
  * @returns none
  */
 template <class T>
@@ -180,8 +195,10 @@ HashTable<T>::HashTable(const HashTable<T> &myHashTable)
  * Cleans resources allocated to HashTable Class
  *
  * @param none
+ *
  * @note Pre-Condition: There exist a HashTable object
  * @note Post-Condition: none
+ *
  * @returns none
  */
 template <class T>
@@ -193,11 +210,15 @@ HashTable<T>::~HashTable(void)
 /**
  * @brief insert Class
  *
- * Inserts an element with data d and key k into the hash table
+ * Inserts an Element object with data d and key k into the hash table
  *
- * @param const T d data and const int k key
+ * @param d - data to be assigned to Element object
+ * @param k - key to be assigned to Element object
+ *
  * @note Pre-Condition: data is of the same data type as the hash table
- * @note Post-Condition: An element with data d and key k is in the hash table
+ * @note HashTable object has had Element Object with corresponding d and k inserted 
+ or nothing if HashTable already had an Element with corresponding values
+ *
  * @returns none
  */
 template <class T>
@@ -209,13 +230,14 @@ void HashTable<T>::insert(const T d, const int k)
         return;
     }
     Element<T> e(d, k); // Create an element with the given data and key
-    int position = k % slots;
+    int position = k % slots; // Find slot to be searched
 
-    // Check if inserted element is a member
+    // Initiate iterators
     auto it = table[position].begin(); // iterator to the beginning of the list
     auto end = table[position].end();  // end of the list
 
-    while (it != end) // Check if the element is already in the table
+    // Check if the element is already in the table
+    while (it != end) 
     {
         if (it->get_data() == d && it->get_key() == k) // If the element is already in the table, don't insert it again
         {
@@ -232,9 +254,12 @@ void HashTable<T>::insert(const T d, const int k)
  *
  * Removes the element with key k from the hash table
  *
- * @param const int k key
- * @note Pre-Condition: none
- * @note Post-Condition: none
+ * @param k - Corresponding key of the Element object to be removed
+ *
+ * @note Pre-Condition: There exist a HashTable object
+ * @note Post-Condition: HashTable object has had Element Object with corresponding d and k removed or nothing 
+ if Element with corresponding values is not found
+ *
  * @returns none
  */
 template <class T>
@@ -247,6 +272,7 @@ void HashTable<T>::remove(const int k)
     }
     int position = k % slots; // Find slot to be searched
 
+    // Initiated iterators
     auto it = table[position].begin();
     auto end = table[position].end();
 
@@ -271,9 +297,12 @@ void HashTable<T>::remove(const int k)
  *
  * Checks to see if element with parameter data d and key k is in the hash table
  *
- * @param const T d data and const int k key
- * @note Pre-Condition: none
+ * @param d - Corresponding data of the Element object being searched for
+ * @param k - Corresponding key of the Element object being searched for
+ *
+ * @note Pre-Condition: There exist a HashTable
  * @note Post-Condition: none
+ * 
  * @returns True if Element is in the hash table, false otherwise
  */
 template <class T>
@@ -313,8 +342,10 @@ bool HashTable<T>::member(const T d, const int k) const
  * Converts a HashTable object into a string
  *
  * @param none
+ *
  * @note Pre-Condition: none
  * @note Post-Condition: none
+ *
  * @returns string version of HashTable object
  */
 template <class T>
@@ -345,9 +376,11 @@ string HashTable<T>::to_string() const
  * Calculates number of items in given HashTable slot by using the list class method size().
  * Size() will return the number of elements in the linked list at the given slot.
  *
- * @param slot HashTable slot
- * @note Pre-Condition: none
+ * @param slot - Given HashTable slot to calculate number of elements in slot
+ *
+ * @note Pre-Condition: There exist a HashTable
  * @note Post-Condition: none
+ *
  * @returns An integer representing the number of items in a HashTable slot
  */
 template <class T>

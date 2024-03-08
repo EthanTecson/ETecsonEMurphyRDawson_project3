@@ -2,7 +2,7 @@
 // Ethan Tecson, Eleanor Murphy, Ryan Dawson
 // hash_table.h
 // Feb 2024
-// This file contains the class template header for hash_table
+// This file contains the class template header for the HashTable class and Element Class
 //=================================
 
 #include <iostream>
@@ -29,8 +29,8 @@ public:
     Element(const Element<T> &myElement); // Copy constructor
     Element(const T &d, const int &k);    // Initialize element with data and key
     ~Element(void);                       // Deconstrcutor
-    int get_key();                        // Instructions say that this method should return the NUMERIC key but I was not sure if keys were able to non-numeric like a string.
-    T get_data();                         // Returns data of element
+    int get_key();                        // returns key
+    T get_data();                         // returns data
 };
 
 #endif
@@ -50,14 +50,14 @@ private:
     list<Element<T>> *table;
 
 public:
-    HashTable(int numSlots);                    // After looking at test cases, I think HashTable always needs to be initiated with a number of slots
+    HashTable(int numSlots);                    // HashTable initiated with number of slots
     HashTable(const HashTable<T> &myHashTable); // Copy Constructor
     ~HashTable(void);                           // Deconstructor
-    void insert(const T d, const int k);        // Inserts data d with key k by inserting at head of double linked list. Reading says that if a slot is not empty, it contains a pointer that points to a doubly linked list.
-    void remove(const int k);                   // Removes element of value k (we are allowed to assume that all keys are distinct)
+    void insert(const T d, const int k);        // Insert data and key (no duplicates of data,key pair)
+    void remove(const int k);                   // Removes element with key k
     bool member(const T d, const int k) const;  // check to see if an element with data d and key k is apart of the HashTable
-    string to_string() const;
-    int get_slot_count(const int slot) const;
+    string to_string() const;                   // Convert HashTable to a string
+    int get_slot_count(const int slot) const;   // Returns number of elements in a given slot
 };
 
 #endif
