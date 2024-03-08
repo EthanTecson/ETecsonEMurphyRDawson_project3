@@ -142,7 +142,7 @@ int Board::getHashValue(int numHashSlots) const
    {
       for (int j = 0; j < BOARD_SIZE; ++j)
       {
-         sum += board[i][j] - 32;
+         sum += (board[i][j] - 32) * i * j;
       }
    }
 
@@ -168,7 +168,9 @@ int Board::getHashValue(int numHashSlots) const
    {
       for (int j = 0; j < BOARD_SIZE; ++j)
       {
-         hashValue += (board[i] * A) - (int)(board[i] * A); // Add the element to the hashValue
+         double franctionalPart = (board[i][j] * A * i * j);
+         //- (int)(board[i][j] * A); // Add the element to the hashValue
+         hashValue += franctionalPart;
       }
    }
 
@@ -186,30 +188,53 @@ int Board::getHashValue(int numHashSlots) const
 {
    // write your very best hash function here.
 
-   double c = (sqrt(5) - 1) / 2; //
-   double m = numHashSlots;      // Table size
+   // double c = (sqrt(5) - 1) / 2; //
+   // double m = numHashSlots;      // Table size
+   // int hashValue = 0;
+   // for (int i = 0; i < BOARD_SIZE; i++) // Convert board to char array
+   // {
+   //    for (int j = 0; j < BOARD_SIZE; j++) // for each element in the board
+   //    {
+   //       hashValue += (board[i][j] - 32) * i * j; // Add the element to the charBoard
+   //    }
+   // }
 
-   char charBoard[BOARD_SIZE * BOARD_SIZE]; // Convert board to char array
-   int index = 0;                           // Index for charBoard
-   for (int i = 0; i < BOARD_SIZE; i++)     // Convert board to char array
+   // // Hash value
+   // for (int i = 0; i < BOARD_SIZE; i++) // for each element in the charBoard
+   // {
+   //    for (int j = 0; j < BOARD_SIZE; j++)
+   //    {
+   //       auto random_value = board[i][j] * pow(c, i);
+   //       hashValue = hashValue * random_value; // Add the element to the hashValue
+   //    }
+   // }
+   // hashValue = hashValue % numHashSlots;            // Mod the hashValue by the table size
+   // hashValue = floor(m * fmod((hashValue * c), 1)); // Hash the value
+
+   // return hashValue;
+
+   double A = (sqrt(5) - 1) / 2; // constant
+
+   // char charBoard[BOARD_SIZE * BOARD_SIZE]; // Convert board to char array
+   // int index = 0;                           // Index for charBoard
+
+   double hashValue = 0; // Hash value
+   for (int i = 0; i < BOARD_SIZE; ++i)
    {
-      for (int j = 0; j < BOARD_SIZE; j++) // for each element in the board
+      for (int j = 0; j < BOARD_SIZE; ++j)
       {
-         charBoard[index++] = board[i][j]; // Add the element to the charBoard
+         double franctionalPart = (board[i][j] * A * i * j);
+         //- (int)(board[i][j] * A); // Add the element to the hashValue
+         hashValue += franctionalPart;
       }
    }
 
-   int hashValue = 0;                                // Hash value
-   for (int i = 0; i < BOARD_SIZE * BOARD_SIZE; i++) // for each element in the charBoard
+   for (int i = 1; i < BOARD_SIZE; ++i)
    {
-      hashValue += charBoard[i] * pow(c, i);           // Add the element to the hashValue
-      hashValue %= numHashSlots;                       // Mod the hashValue by the table size
-      hashValue = floor(m * fmod((hashValue * c), 1)); // Hash the value
+      hashValue *= i;
    }
 
-   return 0;
-
-   return hashValue;
+   return (int)(numHashSlots * (hashValue - (int)hashValue)); // Return the hash value
 }
 #endif
 //============================================================================
