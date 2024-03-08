@@ -39,7 +39,8 @@ Element<T>::Element()
  *
  * Creates an Element object with values taken from parameter
  *
- * @param const T &d data and const int &k
+ * @param d the data we want to initiate the element with
+ * @param k the key we want to initiate the element with
  * @note Pre-Condition: There exist an Element object that can be copied
  * @note Post-Condition: Element object has same data and key from parameter Element
  * @returns none
@@ -57,7 +58,7 @@ Element<T>::Element(const T &d, const int &k)
  *
  * Creates an Element object with values taken from argument
  *
- * @param const Element<T> &myElement - Element object to be copied
+ * @param myElement Element object to be copied
  * @note Pre-Condition: none
  * @note Post-Condition: Creates an Element object whose values are set to the given arguments
  * @returns none
