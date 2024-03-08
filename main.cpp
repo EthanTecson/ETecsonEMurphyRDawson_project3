@@ -80,11 +80,11 @@ int main(int argc, char *argv[])
     }
     cout << "Maximum number of items in a slot: " << max_slot_items << endl;
 
-    // Print data for bar graph
-    for (int i = 0; i < size; ++i)
-    {
-        cout << table.get_slot_count(i) << endl;
-    }
+    // // Print data for bar graph
+    // for (int i = 0; i < size; ++i)
+    // {
+    //     cout << table.get_slot_count(i) << endl;
+    // }
 
     return 0;
 }

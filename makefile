@@ -1,14 +1,14 @@
 all: hash1 hash2 hash3 test 
 
-# sampleRead: sampleRead.cpp Board.h Board.cpp
-# 	g++ -o sampleRead sampleRead.cpp Board.cpp
-	
+# Compile hash3
 hash3: main.cpp Board.h Board.cpp hash_table.cpp hash_table.h
 	g++ -std=c++11 -o hash3 -DHASHFUNCTION3 main.cpp Board.cpp
 
+# Compile hash2
 hash2: main.cpp Board.h Board.cpp hash_table.cpp hash_table.h
 	g++ -std=c++11 -o hash2 -DHASHFUNCTION2 main.cpp Board.cpp
 
+# Compile hash1
 hash1: main.cpp Board.h Board.cpp hash_table.cpp hash_table.h
 	g++ -std=c++11 -o hash1 -DHASHFUNCTION1 main.cpp Board.cpp
 
@@ -23,58 +23,6 @@ test_hash_table.o: test_hash_table.cpp
 hash_table.o: hash_table.cpp hash_table.h 
 	g++ -std=c++11 -c hash_table.cpp
 
-# # Compiles sampleRead
-# sampleRead: sampleRead.o Board.o
-# 	g++ sampleRead.o Board.o -o sampleRead
-
-# sampleRead.o: sampleRead.cpp
-# 	g++ -std=c++11 -c sampleRead.cpp
-
-# Board.o: Board.cpp Board.h
-# 	g++ -std=c++11 -c Board.cpp
-
-# Hash 1
-# hash1: Board.o main.o hash_table.o
-# 	g++ -DHASHFUNCTION1 main.o Board.o hash_table.o -o hash1
-
-# Board.o: Board.cpp Board.h
-# 	g++ -DHASHFUNCTION1 -std=c++11 -c Board.cpp
-
-# main.o: main.cpp Board.h
-# 	g++ -std=c++11 -c main.cpp
-
-# hash_table.o: hash_table.cpp hash_table.h 
-# 	g++ -std=c++11 -c hash_table.cpp
-
-# # Hash 2
-# hash2: main.o Board.o hash_table.o
-# 	g++ -DHASHFUNCTION2 main.o Board.p hash_table.o -o hash2
-
-# main.o: main.cpp
-# 	g++ -std=c++11 -c main.cpp
-
-# Board.o: Board.cpp Board.h
-# 	g++ -std=c++11 -c Board.cpp
-
-# hash_table.o: hash_table.cpp hash_table.h 
-# 	g++ -std=c++11 -c hash_table.cpp
-
-
-# # Hash 3
-# hash3: main.o Board.o hash_table.o
-# 	g++ -DHASHFUNCTION3 main.o Board.p hash_table.o -o hash3
-
-# main.o: main.cpp
-# 	g++ -std=c++11 -c main.cpp
-
-# Board.o: Board.cpp Board.h
-# 	g++ -std=c++11 -c Board.cpp
-
-# hash_table.o: hash_table.cpp hash_table.h 
-# 	g++ -std=c++11 -c hash_table.cpp
-
-
-# all: hash1 hash2 hash3 test sampleRead
 
 clean:
 	rm *.o hash1 hash2 hash3 test sampleRead a.out
