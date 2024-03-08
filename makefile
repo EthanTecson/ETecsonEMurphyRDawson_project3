@@ -1,16 +1,16 @@
-# all: hash1 hash2 hash3 test sampleRead
+all: hash1 hash2 hash3 test 
 
 # sampleRead: sampleRead.cpp Board.h Board.cpp
 # 	g++ -o sampleRead sampleRead.cpp Board.cpp
 	
-# hash3: main.cpp Board.h Board.cpp Hash.h Hash.cpp List.h List.cpp
-# 	g++ -o hash3 -DHASHFUNCTION3 main.cpp Board.cpp
+hash3: main.cpp Board.h Board.cpp hash_table.cpp hash_table.h
+	g++ -std=c++11 -o hash3 -DHASHFUNCTION3 main.cpp Board.cpp
 
-# hash2: main.cpp Board.h Board.cpp Hash.h Hash.cpp List.h List.cpp
-# 	g++ -o hash2 -DHASHFUNCTION2 main.cpp Board.cpp
+hash2: main.cpp Board.h Board.cpp hash_table.cpp hash_table.h
+	g++ -std=c++11 -o hash2 -DHASHFUNCTION2 main.cpp Board.cpp
 
-# hash1: main.cpp Board.h Board.cpp Hash.h Hash.cpp List.h List.cpp
-# 	g++ -o hash1 -DHASHFUNCTION1 main.cpp Board.cpp
+hash1: main.cpp Board.h Board.cpp hash_table.cpp hash_table.h
+	g++ -std=c++11 -o hash1 -DHASHFUNCTION1 main.cpp Board.cpp
 
 
 # compiles our HashTable + Element class into 'test' executable
@@ -34,17 +34,17 @@ hash_table.o: hash_table.cpp hash_table.h
 # 	g++ -std=c++11 -c Board.cpp
 
 # Hash 1
-hash1: Board.o main.o hash_table.o
-	g++ -DHASHFUNCTION1 main.o Board.o hash_table.o -o hash1
+# hash1: Board.o main.o hash_table.o
+# 	g++ -DHASHFUNCTION1 main.o Board.o hash_table.o -o hash1
 
-Board.o: Board.cpp Board.h
-	g++ -std=c++11 -c Board.cpp
+# Board.o: Board.cpp Board.h
+# 	g++ -DHASHFUNCTION1 -std=c++11 -c Board.cpp
 
-main.o: main.cpp Board.h
-	g++ -std=c++11 -c main.cpp
+# main.o: main.cpp Board.h
+# 	g++ -std=c++11 -c main.cpp
 
-hash_table.o: hash_table.cpp hash_table.h 
-	g++ -std=c++11 -c hash_table.cpp
+# hash_table.o: hash_table.cpp hash_table.h 
+# 	g++ -std=c++11 -c hash_table.cpp
 
 # # Hash 2
 # hash2: main.o Board.o hash_table.o
@@ -75,8 +75,6 @@ hash_table.o: hash_table.cpp hash_table.h
 
 
 # all: hash1 hash2 hash3 test sampleRead
-
-all: test sampleRead
 
 clean:
 	rm *.o hash1 hash2 hash3 test sampleRead a.out

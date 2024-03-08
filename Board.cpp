@@ -135,6 +135,8 @@ istream &operator>>(istream &is, Board &b)
 #ifdef HASHFUNCTION1
 int Board::getHashValue(int numHashSlots) const
 {
+   int sum = 0;
+
    for (int i = 0; i < 6; ++i)
    {
       for (int j = 0; i < 6; ++i)

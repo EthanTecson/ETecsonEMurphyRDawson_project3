@@ -253,6 +253,7 @@ void HashTable<T>::remove(const int k)
     while (it != end)
     {
         // If element with given key is in table, create Element object of the same attributes and remove given Element object
+
         if (it->get_key() == k)
         {
             table[position].erase(it); // Remove the element from the list
