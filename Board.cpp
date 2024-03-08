@@ -168,9 +168,9 @@ int Board::getHashValue(int numHashSlots) const
    {
       for (int j = 0; j < BOARD_SIZE; ++j)
       {
-         double franctionalPart = (board[i][j] * A * i * j);
+         double fractionalPart = (board[i][j] * A * i * j);
          //- (int)(board[i][j] * A); // Add the element to the hashValue
-         hashValue += franctionalPart;
+         hashValue += fractionalPart;
       }
    }
 
